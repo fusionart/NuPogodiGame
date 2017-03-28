@@ -3,27 +3,36 @@ package com.nupogodi.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameScreen extends ApplicationAdapter {
-	Stage stage;
-	
+	static Stage gameStage;
+
 	@Override
-	public void create () {
-		stage = new Stage(new ScreenViewport());
+	public void create() {
+		gameStage = new Stage(new ScreenViewport());
 		WolfActor wolfActor = new WolfActor();
 		Background background = new Background();
-		stage.addActor(background);
-		stage.addActor(wolfActor);
-		Gdx.input.setInputProcessor(stage);
-		
+		CreateHands createHands = new CreateHands() {
+		};
+		gameStage.addActor(background);
+		gameStage.addActor(wolfActor);
+		Gdx.input.setInputProcessor(gameStage);
+		createHands.addHands();
+
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.draw();
+		gameStage.draw();
 	}
-	
+
+	public void addActorOnStage(Object object) {
+		gameStage.addActor((Actor) object);
+
+	}
+
 }
