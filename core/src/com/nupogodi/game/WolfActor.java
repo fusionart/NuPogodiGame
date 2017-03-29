@@ -1,16 +1,20 @@
 package com.nupogodi.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class WolfActor extends Actor {
-	Texture wolfTexture = new  Texture(Gdx.files.internal("WolfWithArmsPosition1.png"));
+import WolfBody.WolfBodyLeft;
+import WolfBody.WolfBodyRight;
 
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(wolfTexture, Gdx.graphics.getWidth()/2-wolfTexture.getWidth()/2, Gdx.graphics.getHeight()/2-wolfTexture.getHeight()/2);
+public class WolfActor extends Actor {
+	GameScreen screen = new GameScreen();
+	WolfBodyLeft wolfBodyLeft = new WolfBodyLeft();
+	WolfBodyRight wolfBodyRight = new WolfBodyRight();
+
+	public void createBody() {
+		screen.addActorOnStage(wolfBodyLeft);
+		screen.addActorOnStage(wolfBodyRight);
+		wolfBodyLeft.setVisible(false);
+		wolfBodyRight.setVisible(false);
 	}
 
 }

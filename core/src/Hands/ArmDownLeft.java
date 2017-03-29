@@ -11,6 +11,6 @@ public class ArmDownLeft extends Actor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(armDownLeft, 50, 0);
+		batch.draw(armDownLeft, 130, 70);
 	}
 }

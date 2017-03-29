@@ -16,7 +16,7 @@ public class GameScreen extends ApplicationAdapter {
 	@Override
 	public void create() {
 		gameStage = new Stage(new ScreenViewport());
-		WolfActor wolfActor = new WolfActor();
+		final WolfActor wolfActor = new WolfActor();
 		Background background = new Background();
 		final CreateHands createHands = new CreateHands() {
 		};
@@ -24,6 +24,7 @@ public class GameScreen extends ApplicationAdapter {
 		gameStage.addActor(wolfActor);
 		Gdx.input.setInputProcessor(gameStage);
 		createHands.addHands();
+		wolfActor.createBody();
 		gameStage.addListener(new InputListener(){
 			@Override
 			public boolean keyDown(InputEvent event, int keycode) {
@@ -33,24 +34,32 @@ public class GameScreen extends ApplicationAdapter {
 					createHands.armDownRight.setVisible(false);
 					createHands.armUpLeft.setVisible(false);
 					createHands.armUpRight.setVisible(false);
+					wolfActor.wolfBodyLeft.setVisible(true);
+					wolfActor.wolfBodyRight.setVisible(false);
 					break;
 				case Input.Keys.UP:
 					createHands.armDownLeft.setVisible(false);
 					createHands.armDownRight.setVisible(false);
 					createHands.armUpLeft.setVisible(true);
 					createHands.armUpRight.setVisible(false);
+					wolfActor.wolfBodyLeft.setVisible(true);
+					wolfActor.wolfBodyRight.setVisible(false);
 					break;
 				case Input.Keys.DOWN:
 					createHands.armDownLeft.setVisible(false);
 					createHands.armDownRight.setVisible(true);
 					createHands.armUpLeft.setVisible(false);
 					createHands.armUpRight.setVisible(false);
+					wolfActor.wolfBodyLeft.setVisible(false);
+					wolfActor.wolfBodyRight.setVisible(true);
 					break;
 				case Input.Keys.RIGHT:
 					createHands.armDownLeft.setVisible(false);
 					createHands.armDownRight.setVisible(false);
 					createHands.armUpLeft.setVisible(false);
 					createHands.armUpRight.setVisible(true);
+					wolfActor.wolfBodyLeft.setVisible(false);
+					wolfActor.wolfBodyRight.setVisible(true);
 					break;
 
 				default:
