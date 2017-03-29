@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import Chickens.Chickens;
+
 public class GameScreen extends ApplicationAdapter {
 	static Stage gameStage;
 
@@ -18,13 +20,15 @@ public class GameScreen extends ApplicationAdapter {
 		gameStage = new Stage(new ScreenViewport());
 		final WolfActor wolfActor = new WolfActor();
 		Background background = new Background();
+		gameStage.addActor(background);
 		final CreateHands createHands = new CreateHands() {
 		};
-		gameStage.addActor(background);
-		gameStage.addActor(wolfActor);
-		Gdx.input.setInputProcessor(gameStage);
+		Chickens chickens = new Chickens();
+		gameStage.addActor(chickens);
 		createHands.addHands();
+		gameStage.addActor(wolfActor);
 		wolfActor.createBody();
+		Gdx.input.setInputProcessor(gameStage);
 		gameStage.addListener(new InputListener(){
 			@Override
 			public boolean keyDown(InputEvent event, int keycode) {
