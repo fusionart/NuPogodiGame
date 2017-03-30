@@ -9,9 +9,11 @@ public class Background extends Actor {
 	
 	Texture background = new Texture(Gdx.files.internal("BackgroundScreen.png"));
 
+
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		batch.draw(background, 0, 0);
+
 	}
 
 }
