@@ -50,5 +50,9 @@ public class StartScreen implements ApplicationListener {
 		// TODO Auto-generated method stub
 		
 	}
+	public void addActorOnStage(Object object) {
+		gameStage.addActor((Actor) object);
+
+	}
 
 }
