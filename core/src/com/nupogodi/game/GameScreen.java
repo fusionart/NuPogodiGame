@@ -17,7 +17,7 @@ import Chickens.Chickens;
 import Chickens.Eggs;
 
 public class GameScreen extends ApplicationAdapter {
-	static Stage gameStage;
+	public static Stage gameStage;
 	private Eggs egg;
 	private SpriteBatch batch;
 	private Texture eggTexture;
@@ -98,10 +98,15 @@ public class GameScreen extends ApplicationAdapter {
 		createEggs();
 		egg.update();
 	}
+	
+	@Override
+	public void dispose() {
+		batch.dispose();
+	}
 
 	private void createEggs() {
 		if(lives>0){
-			egg.addEggs(50);
+			egg.addEggs();
 		}
 	}
 
