@@ -23,12 +23,14 @@ public class Eggs {
 	private Texture eggTexture;
 	private Sprite newEgg;
 	private Vector2 velocity = new Vector2();
-	private List<Sprite> eggsList = new ArrayList<Sprite>();
+	private List<Sprite> eggsListLeft = new ArrayList<Sprite>();
+	private List<Sprite> eggsListRight = new ArrayList<Sprite>();
 	private float timeSinceLastEgg = 0;
 	private Random rand = new Random();
 
 	public Eggs(Texture eggTexture) {
 		this.eggTexture = eggTexture;
+		setVelocity(new Vector2(VELOCITY_X, VELOCITY_Y));
 	}
 
 	public void addEggs() {
@@ -55,49 +57,45 @@ public class Eggs {
 	private void addEggUpRight() {
 		if (canCreateEgg()) {
 			newEgg = new Sprite(eggTexture);
-			newEgg.setPosition(gameScreen.gameStage.getWidth()-OFFSET_POSSITION, DOWN_POSSITION);
-			this.setVelocity(new Vector2(-VELOCITY_X, -VELOCITY_Y));
-			eggsList.add(newEgg);
+			newEgg.setPosition(gameScreen.gameStage.getWidth() - OFFSET_POSSITION, UP_POSSITION);
+			eggsListRight.add(newEgg);
 			timeSinceLastEgg = 0;
 		}
-		
+
 	}
 
 	private void addEggDownRight() {
 		if (canCreateEgg()) {
 			newEgg = new Sprite(eggTexture);
-			newEgg.setPosition(gameScreen.gameStage.getWidth()-OFFSET_POSSITION, DOWN_POSSITION);
-			this.setVelocity(new Vector2(-VELOCITY_X, -VELOCITY_Y));
-			eggsList.add(newEgg);
+			newEgg.setPosition(gameScreen.gameStage.getWidth() - OFFSET_POSSITION, DOWN_POSSITION);
+			eggsListRight.add(newEgg);
 			timeSinceLastEgg = 0;
 		}
-		
+
 	}
 
 	private void addEggUpLeft() {
 		if (canCreateEgg()) {
 			newEgg = new Sprite(eggTexture);
 			newEgg.setPosition(OFFSET_POSSITION, UP_POSSITION);
-			this.setVelocity(new Vector2(VELOCITY_X, VELOCITY_Y));
-			eggsList.add(newEgg);
+			eggsListLeft.add(newEgg);
 			timeSinceLastEgg = 0;
 		}
-		
+
 	}
 
 	private void addEggDownLeft() {
 		if (canCreateEgg()) {
 			newEgg = new Sprite(eggTexture);
 			newEgg.setPosition(OFFSET_POSSITION, DOWN_POSSITION);
-			this.setVelocity(new Vector2(VELOCITY_X, VELOCITY_Y));
-			eggsList.add(newEgg);
+			eggsListLeft.add(newEgg);
 			timeSinceLastEgg = 0;
 		}
-		
+
 	}
 
 	private int generateRandom() {
-		int n = rand.nextInt(4)+1;
+		int n = rand.nextInt(4) + 1;
 		return n;
 	}
 
@@ -110,28 +108,47 @@ public class Eggs {
 	}
 
 	public void drawEveryEgg(SpriteBatch batch) {
-		for (Sprite egg : eggsList) {
+		for (Sprite egg : eggsListLeft) {
+			egg.draw(batch);
+		}
+		for (Sprite egg : eggsListRight) {
 			egg.draw(batch);
 		}
 
 	}
 
 	public void update() {
-		System.out.println("Eggggs "+eggsList.size());
-		Iterator<Sprite> i = eggsList.iterator();
+		Iterator<Sprite> i = eggsListLeft.iterator();
 		while (i.hasNext()) {
 			Sprite egg = i.next();
-			move(egg);
-			if (egg.getY() > 400)
+			moveLeftSide(egg);
+			if (egg.getX() > 100)
 				i.remove();
+		}
+		Iterator<Sprite> j = eggsListRight.iterator();
+		while (j.hasNext()) {
+			Sprite egg = j.next();
+			moveRightSide(egg);
+			if (egg.getX() < gameScreen.gameStage.getWidth() - 100)
+				j.remove();
 		}
 		timeSinceLastEgg += Gdx.graphics.getDeltaTime();
 	}
 
-	private void move(Sprite egg) {
+	private void moveRightSide(Sprite egg) {
+		int xMovement = (int) (-velocity.x * Gdx.graphics.getDeltaTime());
+		int yMovement = (int) (-velocity.y * Gdx.graphics.getDeltaTime());
+		// System.out.println("x "+newEgg.getX() + xMovement+" y "+
+		// newEgg.getY() + yMovement);
+		egg.setPosition(egg.getX() + xMovement, egg.getY() + yMovement);
+
+	}
+
+	private void moveLeftSide(Sprite egg) {
 		int xMovement = (int) (velocity.x * Gdx.graphics.getDeltaTime());
-		int yMovement = (int) (velocity.y * Gdx.graphics.getDeltaTime());
-		//System.out.println("x "+newEgg.getX() + xMovement+" y "+ newEgg.getY() + yMovement);
+		int yMovement = (int) (-velocity.y * Gdx.graphics.getDeltaTime());
+		// System.out.println("x "+newEgg.getX() + xMovement+" y "+
+		// newEgg.getY() + yMovement);
 		egg.setPosition(egg.getX() + xMovement, egg.getY() + yMovement);
 	}
 
