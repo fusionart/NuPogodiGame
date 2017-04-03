@@ -2,13 +2,16 @@ package Screens;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class MainMenu implements Screen {
 	private Stage stage;
-
+	private Table table; //For easier positioning the objects
+    private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
