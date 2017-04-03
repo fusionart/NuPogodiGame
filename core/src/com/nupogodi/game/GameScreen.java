@@ -3,6 +3,7 @@ package com.nupogodi.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -23,11 +24,19 @@ public class GameScreen extends ApplicationAdapter {
 		gameStage.addActor(background);
 		final CreateHands createHands = new CreateHands() {
 		};
+		
 		Chickens chickens = new Chickens();
 		gameStage.addActor(chickens);
+		
 		createHands.addHands();
+		
 		gameStage.addActor(wolfActor);
 		wolfActor.createBody();
+		
+		Actor buttons = new Actor();
+		gameStage.addActor(buttons);
+		
+		
 		Gdx.input.setInputProcessor(gameStage);
 		gameStage.addListener(new InputListener(){
 			@Override

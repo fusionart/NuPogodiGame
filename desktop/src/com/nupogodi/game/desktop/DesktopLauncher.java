@@ -20,7 +20,7 @@ public class DesktopLauncher {
 		config2.width = SCREEN_WIDTH;
 		config2.height = SCREEN_HEIGH;
 		
-	//	new LwjglApplication (new StartScreen(), config1);
+		//new LwjglApplication (new StartScreen(), config1);
 		new LwjglApplication (new GameScreen(), config2);
 	}
 }
