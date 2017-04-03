@@ -5,6 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -12,33 +15,40 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import Chickens.Chickens;
+import Chickens.Eggs;
 
 public class GameScreen extends ApplicationAdapter {
-	static Stage gameStage;
+	public static Stage gameStage;
+	private Eggs egg;
+	private SpriteBatch batch;
+	private Texture eggTexture;
+	private int lives = 3;
 
 	@Override
 	public void create() {
+		batch = new SpriteBatch();
+		eggTexture = new Texture(Gdx.files.internal("newEgg.png"));
+		egg = new Eggs(eggTexture);
 		gameStage = new Stage(new ScreenViewport());
 		final WolfActor wolfActor = new WolfActor();
 		Background background = new Background();
 		gameStage.addActor(background);
 		final CreateHands createHands = new CreateHands() {
 		};
-		
+
 		Chickens chickens = new Chickens();
 		gameStage.addActor(chickens);
-		
+
 		createHands.addHands();
-		
+
 		gameStage.addActor(wolfActor);
 		wolfActor.createBody();
-		
+
 		Actor buttons = new Actor();
 		gameStage.addActor(buttons);
-		
-		
+
 		Gdx.input.setInputProcessor(gameStage);
-		gameStage.addListener(new InputListener(){
+		gameStage.addListener(new InputListener() {
 			@Override
 			public boolean keyDown(InputEvent event, int keycode) {
 				switch (keycode) {
@@ -78,7 +88,7 @@ public class GameScreen extends ApplicationAdapter {
 				default:
 					break;
 				}
-				
+
 				return true;
 			}
 		});
@@ -89,11 +99,26 @@ public class GameScreen extends ApplicationAdapter {
 	public void render() {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gameStage.draw();
+		batch.begin();
+		egg.drawEveryEgg(batch);
+		batch.end();
+		createEggs();
+		egg.update();
+	}
+
+	@Override
+	public void dispose() {
+		batch.dispose();
+	}
+
+	private void createEggs() {
+		if (lives > 0) {
+			egg.addEggs();
+		}
 	}
 
 	public void addActorOnStage(Object object) {
 		gameStage.addActor((Actor) object);
-
 	}
 
 }
