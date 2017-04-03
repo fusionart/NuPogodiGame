@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import Screens.Splash;
 
-public class NuPagadiStartScreen extends Game {
+public class NuPogodiStartScreen extends Game {
 	public static Stage $gameStage;
 	public static final int Screen_HEIGH = 600;
 	public static final int Screen_WIDTH = 450;

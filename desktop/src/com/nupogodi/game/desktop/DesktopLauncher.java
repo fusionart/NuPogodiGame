@@ -4,7 +4,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.nupogodi.game.GameScreen;
-import com.nupogodi.game.NuPagadiStartScreen;
+import com.nupogodi.game.NuPogodiStartScreen;
 
 public class DesktopLauncher {
 	private static final int SCREEN_WIDTH = 600;
