@@ -11,12 +11,12 @@ public class DesktopLauncher {
 	private static final int SCREEN_HEIGH = 450;
 
 	public static void main(String[] arg) {
-		LwjglApplicationConfiguration config2 = new LwjglApplicationConfiguration();
-		config2.title = "Ну Погоди ";
-		config2.width = SCREEN_WIDTH;
-		config2.height = SCREEN_HEIGH;
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.title = "Ну Погоди ";
+		config.width = SCREEN_WIDTH;
+		config.height = SCREEN_HEIGH;
 
 		// new LwjglApplication (new GameScreen(), config2); //Commented in ordet to try out the splash Screen
-		new LwjglApplication(new NuPagadiStartScreen(), config2);
+		new LwjglApplication(new NuPagadiStartScreen(), config);
 	}
 }
