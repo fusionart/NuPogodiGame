@@ -1,6 +1,8 @@
 package Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -8,8 +10,14 @@ public class Splash implements Screen {
 	private SpriteBatch batch;
 	private Sprite splashPic; // for the pic that would be displayed
 
-	public void create() {
-		// TODO Auto-generated method stub
+
+	@Override
+	public void show() {
+		batch = new SpriteBatch();
+		
+		Texture splashTexture = new Texture("img/bg.jpg");
+		splashPic = new Sprite(splashPic);
+		splashPic.setSize(Gdx.graphics.getHeight(), Gdx.graphics.getWidth()); //setting the size of the pic equal to the screen 
 
 	}
 
@@ -37,11 +45,6 @@ public class Splash implements Screen {
 
 	}
 
-	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void render(float delta) {
