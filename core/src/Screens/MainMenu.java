@@ -1,5 +1,6 @@
 package Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -20,7 +21,7 @@ public class MainMenu implements Screen {
     
     @Override
 	public void show() {
-		
+		white = new BitmapFont(Gdx.files.internal("src/fonts/white.fnt"), false);
 
 	}
 
