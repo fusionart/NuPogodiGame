@@ -16,7 +16,7 @@ public class DesktopLauncher {
 		config.width = SCREEN_WIDTH;
 		config.height = SCREEN_HEIGH;
 
-		// new LwjglApplication (new GameScreen(), config2); //Commented in ordet to try out the splash Screen
-		new LwjglApplication(new NuPagadiStartScreen(), config);
+		new LwjglApplication (new GameScreen(), config); 
+		//new LwjglApplication(new NuPagadiStartScreen(), config); Gonna work out over it 
 	}
 }

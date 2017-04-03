@@ -3,10 +3,12 @@ package com.nupogodi.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
 import Screens.Splash;
 
 public class NuPagadiStartScreen extends Game {
-
+	public static Stage $gameStage;
 	public static final int Screen_HEIGH = 600;
 	public static final int Screen_WIDTH = 450;
 	private static final String title = "Nu pagadi Game";

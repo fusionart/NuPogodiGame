@@ -48,7 +48,8 @@ public class Splash implements Screen {
 
 	@Override
 	public void dispose() {
-
+    batch.dispose(); // to free some memory when we don't need the batch any more 
+    splashPic.getTexture().dispose(); // good to dispose textures unless we're using them yet
 	}
 
 	@Override
