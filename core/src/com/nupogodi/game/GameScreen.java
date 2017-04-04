@@ -15,79 +15,46 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import Chickens.Chickens;
 import Chickens.EggsGenerator;
+import LivesAndScore.Score;
+import WolfBody.WolfActor;
+import WolfBody.WolfMovement;
 
 public class GameScreen extends ApplicationAdapter {
-	public static Stage gameStage;
+	static Stage gameStage;
+	private Background background;
 	private EggsGenerator eggsNewTest;
 	private SpriteBatch batch;
 	private Texture eggTexture;
+	private Score score;
+	private WolfMovement wolfMovement;
 	private int lives = 3;
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
+		score = new Score(0);
+		wolfMovement = new WolfMovement();
 		eggTexture = new Texture(Gdx.files.internal("newEgg.png"));
 		eggsNewTest = new EggsGenerator(eggTexture);
 		gameStage = new Stage(new ScreenViewport());
-		final WolfActor wolfActor = new WolfActor();
-		Background background = new Background();
+		background = new Background();
 		gameStage.addActor(background);
-		final CreateHands createHands = new CreateHands() {
-		};
 
 		Chickens chickens = new Chickens();
 		gameStage.addActor(chickens);
 
-		createHands.addHands();
-
-		gameStage.addActor(wolfActor);
-		wolfActor.createBody();
-
 		Actor buttons = new Actor();
 		gameStage.addActor(buttons);
+		
+		addListenerToStage();
+	}
 
+	private void addListenerToStage() {
 		Gdx.input.setInputProcessor(gameStage);
 		gameStage.addListener(new InputListener() {
 			@Override
 			public boolean keyDown(InputEvent event, int keycode) {
-				switch (keycode) {
-				case Input.Keys.LEFT:
-					createHands.armDownLeft.setVisible(true);
-					createHands.armDownRight.setVisible(false);
-					createHands.armUpLeft.setVisible(false);
-					createHands.armUpRight.setVisible(false);
-					wolfActor.wolfBodyLeft.setVisible(true);
-					wolfActor.wolfBodyRight.setVisible(false);
-					break;
-				case Input.Keys.UP:
-					createHands.armDownLeft.setVisible(false);
-					createHands.armDownRight.setVisible(false);
-					createHands.armUpLeft.setVisible(true);
-					createHands.armUpRight.setVisible(false);
-					wolfActor.wolfBodyLeft.setVisible(true);
-					wolfActor.wolfBodyRight.setVisible(false);
-					break;
-				case Input.Keys.DOWN:
-					createHands.armDownLeft.setVisible(false);
-					createHands.armDownRight.setVisible(true);
-					createHands.armUpLeft.setVisible(false);
-					createHands.armUpRight.setVisible(false);
-					wolfActor.wolfBodyLeft.setVisible(false);
-					wolfActor.wolfBodyRight.setVisible(true);
-					break;
-				case Input.Keys.RIGHT:
-					createHands.armDownLeft.setVisible(false);
-					createHands.armDownRight.setVisible(false);
-					createHands.armUpLeft.setVisible(false);
-					createHands.armUpRight.setVisible(true);
-					wolfActor.wolfBodyLeft.setVisible(false);
-					wolfActor.wolfBodyRight.setVisible(true);
-					break;
-
-				default:
-					break;
-				}
-
+				wolfMovement.wolfMovement(keycode);
 				return true;
 			}
 		});
