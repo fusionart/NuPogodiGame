@@ -10,9 +10,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nupogodi.game.GameScreen;
 
+import Hands.CreateHands;
 import LivesAndScore.Score;
+import WolfBody.WolfMovement;
 
 public class EggsGenerator {
+
 	GameScreen gameScreen = new GameScreen();
 	private static final float MINIMUM_TIME_BETWEEN_EGGS = .5f;
 	private static final float LEFT_START_X = 40;
@@ -31,9 +34,13 @@ public class EggsGenerator {
 	private float timeSinceLastEgg = 0;
 	private Random rand = new Random();
 	private Score score = new Score(0);
+	private int possition;
 
 	public EggsGenerator(Texture eggTexture) {
 		this.eggTexture = eggTexture;
+	}
+	public EggsGenerator() {
+
 	}
 
 	public void addEggs() {
@@ -88,24 +95,27 @@ public class EggsGenerator {
 		while (i.hasNext()) {
 			Egg egg = i.next();
 			moveEggs(egg);
-			removeEggs(egg,i);
+			if (removeEggs(egg)) {
+				i.remove();
+			}
 		}
 		timeSinceLastEgg += Gdx.graphics.getDeltaTime();
 	}
 
-	private void removeEggs(Egg egg, Iterator<Egg> i) {
+	private boolean removeEggs(Egg egg) {
 		if (egg.getStartX() == LEFT_START_X) {
 			if (egg.getEggX() >= egg.getEndX()) {
-				score.scoreUpdate();
-				i.remove();
+				if (score.addScore(egg)) {
+					return true;
+				}
 			}
 		} else {
 			if (egg.getEggX() <= egg.getEndX()) {
-				score.scoreUpdate();
-				i.remove();
+				// score.scoreUpdate();
+				return true;
 			}
 		}
-		
+		return false;
 	}
 
 	private void moveEggs(Egg egg) {
@@ -122,4 +132,11 @@ public class EggsGenerator {
 
 	}
 
+	public int getPossition() {
+		return possition;
+	}
+
+	public void setPossition(int possition) {
+		this.possition = possition;
+	}
 }
