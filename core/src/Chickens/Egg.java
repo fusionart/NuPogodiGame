@@ -2,10 +2,9 @@ package Chickens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class SingleEgg extends Actor{
+public class Egg extends Actor {
 
 	private float startX;
 	private float endX;
@@ -13,10 +12,9 @@ public class SingleEgg extends Actor{
 	private float endY;
 	private float eggX;
 	private float eggY;
-	private float distance;
 	private Texture eggTexture;
 
-	public SingleEgg(float startX, float endX, float startY, float endY, Texture eggTexture) {
+	public Egg(float startX, float endX, float startY, float endY, Texture eggTexture) {
 		setStartX(startX);
 		setEndX(endX);
 		setStartY(startY);
@@ -90,7 +88,5 @@ public class SingleEgg extends Actor{
 	public void setEggY(float eggY) {
 		this.eggY = eggY;
 	}
-
-
 
 }

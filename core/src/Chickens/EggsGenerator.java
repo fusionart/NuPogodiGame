@@ -8,10 +8,9 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.nupogodi.game.GameScreen;
 
-public class EggsNewTest {
+public class EggsGenerator {
 	GameScreen gameScreen = new GameScreen();
 	private static final float MINIMUM_TIME_BETWEEN_EGGS = .5f;
 	private static final float LEFT_START_X = 40;
@@ -25,12 +24,12 @@ public class EggsNewTest {
 	private float speed = 0.9f;
 	private float elapsed = 0.01f;
 	private Texture eggTexture;
-	private SingleEgg newEgg;
-	private List<SingleEgg> eggList = new ArrayList<SingleEgg>();
+	private Egg newEgg;
+	private List<Egg> eggList = new ArrayList<Egg>();
 	private float timeSinceLastEgg = 0;
 	private Random rand = new Random();
 
-	public EggsNewTest(Texture eggTexture) {
+	public EggsGenerator(Texture eggTexture) {
 		this.eggTexture = eggTexture;
 	}
 
@@ -57,7 +56,7 @@ public class EggsNewTest {
 
 	private void createEggs(float startX, float endX, float startY, float endY, Texture eggTexture) {
 		if (canCreateEgg()) {
-			newEgg = new SingleEgg(startX, endX, startY, endY, eggTexture);
+			newEgg = new Egg(startX, endX, startY, endY, eggTexture);
 			newEgg.setEggX(startX);
 			newEgg.setEggY(startY);
 			eggList.add(newEgg);
@@ -76,15 +75,15 @@ public class EggsNewTest {
 	}
 
 	public void drawEveryEgg(SpriteBatch batch) {
-		for (SingleEgg egg : eggList) {
+		for (Egg egg : eggList) {
 			egg.draw(batch);
 		}
 	}
 
 	public void update() {
-		Iterator<SingleEgg> i = eggList.iterator();
+		Iterator<Egg> i = eggList.iterator();
 		while (i.hasNext()) {
-			SingleEgg egg = i.next();
+			Egg egg = i.next();
 			moveEggs(egg);
 			if (egg.getStartX() == LEFT_START_X) {
 				if (egg.getEggX() >= egg.getEndX()) {
@@ -99,7 +98,7 @@ public class EggsNewTest {
 		timeSinceLastEgg += Gdx.graphics.getDeltaTime();
 	}
 
-	private void moveEggs(SingleEgg egg) {
+	private void moveEggs(Egg egg) {
 		// System.out.println(egg.getStartX());
 		// System.out.println(egg.getEggX() +
 		// egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);

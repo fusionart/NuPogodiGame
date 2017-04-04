@@ -11,7 +11,7 @@ public class NuPogodiStartScreen extends Game {
 	public static Stage $gameStage;
 	public static final int Screen_HEIGH = 600;
 	public static final int Screen_WIDTH = 450;
-	private static final String title = "Nu pagadi Game";
+	private static final String title = "Nu pogodi Game";
 
 	@Override
 	public void create() {
