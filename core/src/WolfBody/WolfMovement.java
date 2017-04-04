@@ -4,48 +4,40 @@ import com.badlogic.gdx.Input;
 import com.nupogodi.game.*;
 
 public class WolfMovement {
-	CreateHands hands = new CreateHands(){};
+	CreateHands hands = new CreateHands() {
+	};
 	WolfActor wolfActor = new WolfActor();
-	public void wolfMovement(int keycode){
+
+	public void wolfMovement(int keycode) {
 		hands.addHands();
 		wolfActor.createBody();
 		switch (keycode) {
 		case Input.Keys.LEFT:
-			hands.armDownLeft(true);
-			hands.armDownRight(false);
-			hands.armUpLeft(false);
-			hands.armUpRight(false);
-			wolfActor.wolfBodyLeft(true);
-			wolfActor.wolfBodyRight(false);
+			changeVisibilityForWolf(true, false, false, false, true, false);
 			break;
 		case Input.Keys.UP:
-			hands.armDownLeft(false);
-			hands.armDownRight(false);
-			hands.armUpLeft(true);
-			hands.armUpRight(false);
-			wolfActor.wolfBodyLeft(true);
-			wolfActor.wolfBodyRight(false);
+			changeVisibilityForWolf(false, false, true, false, true, false);
 			break;
 		case Input.Keys.DOWN:
-			hands.armDownLeft(false);
-			hands.armDownRight(true);
-			hands.armUpLeft(false);
-			hands.armUpRight(false);
-			wolfActor.wolfBodyLeft(false);
-			wolfActor.wolfBodyRight(true);
+			changeVisibilityForWolf(false, true, false, false, false, true);
 			break;
 		case Input.Keys.RIGHT:
-			hands.armDownLeft(false);
-			hands.armDownRight(false);
-			hands.armUpLeft(false);
-			hands.armUpRight(true);
-			wolfActor.wolfBodyLeft(false);
-			wolfActor.wolfBodyRight(true);
+			changeVisibilityForWolf(false, false, false, true, false, true);
 			break;
 
 		default:
 			break;
 		}
-		
+
+	}
+
+	private void changeVisibilityForWolf(boolean armDownLeft, boolean armDownRight, boolean armUpLeft,
+			boolean armUpRight, boolean wolfBodyLeft, boolean wolfBodyRight) {
+		hands.armDownLeft(armDownLeft);
+		hands.armDownRight(armDownRight);
+		hands.armUpLeft(armUpLeft);
+		hands.armUpRight(armUpRight);
+		wolfActor.wolfBodyLeft(wolfBodyLeft);
+		wolfActor.wolfBodyRight(wolfBodyRight);
 	}
 }
