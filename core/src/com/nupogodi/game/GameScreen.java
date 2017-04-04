@@ -19,20 +19,18 @@ import WolfBody.WolfMovement;
 public class GameScreen extends ApplicationAdapter {
 	static Stage gameStage;
 	private Background background;
-	private EggsGenerator eggsNewTest;
+	private EggsGenerator eggsGenerator;
 	private SpriteBatch batch;
 	private Texture eggTexture;
-	private Score score;
 	private WolfMovement wolfMovement;
 	private int lives = 3;
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		score = new Score(0);
 		wolfMovement = new WolfMovement();
 		eggTexture = new Texture(Gdx.files.internal("newEgg.png"));
-		eggsNewTest = new EggsGenerator(eggTexture);
+		eggsGenerator = new EggsGenerator(eggTexture);
 		gameStage = new Stage(new ScreenViewport());
 		background = new Background();
 		gameStage.addActor(background);
@@ -62,10 +60,10 @@ public class GameScreen extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gameStage.draw();
 		batch.begin();
-		eggsNewTest.drawEveryEgg(batch);
+		eggsGenerator.drawEveryEgg(batch);
 		batch.end();
 		createEggs();
-		eggsNewTest.update();
+		eggsGenerator.update();
 	}
 
 	@Override
@@ -75,7 +73,7 @@ public class GameScreen extends ApplicationAdapter {
 
 	private void createEggs() {
 		if (lives > 0) {
-			eggsNewTest.addEggs();
+			eggsGenerator.addEggs();
 		}
 	}
 

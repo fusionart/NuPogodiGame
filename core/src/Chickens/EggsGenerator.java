@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nupogodi.game.GameScreen;
 
+import LivesAndScore.Score;
+
 public class EggsGenerator {
 	GameScreen gameScreen = new GameScreen();
 	private static final float MINIMUM_TIME_BETWEEN_EGGS = .5f;
@@ -28,6 +30,7 @@ public class EggsGenerator {
 	private List<Egg> eggList = new ArrayList<Egg>();
 	private float timeSinceLastEgg = 0;
 	private Random rand = new Random();
+	private Score score = new Score(0);
 
 	public EggsGenerator(Texture eggTexture) {
 		this.eggTexture = eggTexture;
@@ -85,17 +88,24 @@ public class EggsGenerator {
 		while (i.hasNext()) {
 			Egg egg = i.next();
 			moveEggs(egg);
-			if (egg.getStartX() == LEFT_START_X) {
-				if (egg.getEggX() >= egg.getEndX()) {
-					i.remove();
-				}
-			} else {
-				if (egg.getEggX() <= egg.getEndX()) {
-					i.remove();
-				}
-			}
+			removeEggs(egg,i);
 		}
 		timeSinceLastEgg += Gdx.graphics.getDeltaTime();
+	}
+
+	private void removeEggs(Egg egg, Iterator<Egg> i) {
+		if (egg.getStartX() == LEFT_START_X) {
+			if (egg.getEggX() >= egg.getEndX()) {
+				score.scoreUpdate();
+				i.remove();
+			}
+		} else {
+			if (egg.getEggX() <= egg.getEndX()) {
+				score.scoreUpdate();
+				i.remove();
+			}
+		}
+		
 	}
 
 	private void moveEggs(Egg egg) {
