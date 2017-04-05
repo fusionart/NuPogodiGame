@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import Chickens.Chickens;
 import Chickens.EggsGenerator;
+import LivesAndScore.Lives;
 import LivesAndScore.Score;
 import WolfBody.WolfMovement;
 
@@ -23,7 +24,7 @@ public class GameScreen extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Texture eggTexture;
 	private WolfMovement wolfMovement;
-	private int lives = 3;
+	private Lives lives = new Lives();
 
 	@Override
 	public void create() {
@@ -40,7 +41,7 @@ public class GameScreen extends ApplicationAdapter {
 
 		Actor buttons = new Actor();
 		gameStage.addActor(buttons);
-		
+
 		addListenerToStage();
 	}
 
@@ -60,7 +61,9 @@ public class GameScreen extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gameStage.draw();
 		batch.begin();
-		eggsGenerator.drawEveryEgg(batch);
+		if (lives.getLives() > 0) {
+			eggsGenerator.drawEveryEgg(batch);
+		}
 		batch.end();
 		createEggs();
 		eggsGenerator.update();
@@ -72,7 +75,7 @@ public class GameScreen extends ApplicationAdapter {
 	}
 
 	private void createEggs() {
-		if (lives > 0) {
+		if (lives.getLives() > 0) {
 			eggsGenerator.addEggs();
 		}
 	}

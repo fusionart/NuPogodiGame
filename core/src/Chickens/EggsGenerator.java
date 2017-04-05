@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nupogodi.game.GameScreen;
 
+import LivesAndScore.Lives;
 import LivesAndScore.Score;
 
 public class EggsGenerator {
@@ -33,6 +34,7 @@ public class EggsGenerator {
 	private float timeSinceLastEgg = 0;
 	private Random rand = new Random();
 	private Score score = new Score(0);
+	private Lives lives = new Lives();
 
 	public EggsGenerator(Texture eggTexture) {
 		this.eggTexture = eggTexture;
@@ -99,6 +101,7 @@ public class EggsGenerator {
 			}
 			if (egg.getEggY() < DOWN_LIMIT) {
 				i.remove();
+				lives.lostLive();
 			}
 		}
 		timeSinceLastEgg += Gdx.graphics.getDeltaTime();
