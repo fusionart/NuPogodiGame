@@ -1,7 +1,7 @@
 package LivesAndScore;
 
 public class Lives {
-	private static final int LIVES = 3;
+	private static final int LIVES = 10;
 	private static int currentLives = LIVES;
 	
 	public void lostLive (){
