@@ -13,12 +13,14 @@ public class Egg extends Actor {
 	private float eggX;
 	private float eggY;
 	private Texture eggTexture;
+	private boolean isEgg;
 
-	public Egg(float startX, float endX, float startY, float endY, Texture eggTexture) {
+	public Egg(float startX, float endX, float startY, float endY, Texture eggTexture, boolean isEgg) {
 		setStartX(startX);
 		setEndX(endX);
 		setStartY(startY);
 		setEndY(endY);
+		setIsEgg(isEgg);
 		this.eggTexture = eggTexture;
 	}
 
@@ -87,6 +89,14 @@ public class Egg extends Actor {
 
 	public void setEggY(float eggY) {
 		this.eggY = eggY;
+	}
+
+	public boolean getIsEgg() {
+		return isEgg;
+	}
+
+	public void setIsEgg(boolean isEgg) {
+		this.isEgg = isEgg;
 	}
 
 }

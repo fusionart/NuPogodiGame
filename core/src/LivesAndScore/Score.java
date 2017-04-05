@@ -24,17 +24,29 @@ public class Score {
 		setScore(score);
 		System.out.println(score);
 	}
-	
+
 	public boolean addScore(Egg egg) {
-		if(handsPossition.getHandPossition()==1&&egg.getEggY()<150){
+		if (handsPossition.getHandPossition() == 1 && egg.getEggY() < 150 && egg.getEggX() > 100
+				&& egg.getEggX() < 120) {
 			scoreUpdate();
 			return true;
 		}
-		if(handsPossition.getHandPossition()==2&&egg.getEggY()>200){
+		if (handsPossition.getHandPossition() == 2 && egg.getEggY() > 200 && egg.getEggX() > 100
+				&& egg.getEggX() < 120) {
 			scoreUpdate();
 			return true;
 		}
-		
+		if (handsPossition.getHandPossition() == 3 && egg.getEggY() < 150 && egg.getEggX() > 430
+				&& egg.getEggX() < 500) {
+			scoreUpdate();
+			return true;
+		}
+		if (handsPossition.getHandPossition() == 4 && egg.getEggY() > 200 && egg.getEggX() > 430
+				&& egg.getEggX() < 500) {
+			scoreUpdate();
+			return true;
+		}
+
 		return false;
 	}
 

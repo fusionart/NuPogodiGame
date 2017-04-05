@@ -17,13 +17,14 @@ public class EggsGenerator {
 	GameScreen gameScreen = new GameScreen();
 	private static final float MINIMUM_TIME_BETWEEN_EGGS = .5f;
 	private static final float LEFT_START_X = 40;
-	private static final float LEFT_END_X = 150;
+	private static final float LEFT_END_X = 100;
 	private static final float RIGHT_START_X = 560;
-	private static final float RIGHT_END_X = 450;
+	private static final float RIGHT_END_X = 430;
 	private static final float DOWN_START_Y = 150;
 	private static final float DOWN_END_Y = 50;
 	private static final float UP_START_Y = 270;
 	private static final float UP_END_Y = 210;
+	private static final float DOWN_LIMIT = 20;
 	private float speed = 0.9f;
 	private float elapsed = 0.01f;
 	private Texture eggTexture;
@@ -32,11 +33,11 @@ public class EggsGenerator {
 	private float timeSinceLastEgg = 0;
 	private Random rand = new Random();
 	private Score score = new Score(0);
-	private int possition;
 
 	public EggsGenerator(Texture eggTexture) {
 		this.eggTexture = eggTexture;
 	}
+
 	public EggsGenerator() {
 
 	}
@@ -64,7 +65,7 @@ public class EggsGenerator {
 
 	private void createEggs(float startX, float endX, float startY, float endY, Texture eggTexture) {
 		if (canCreateEgg()) {
-			newEgg = new Egg(startX, endX, startY, endY, eggTexture);
+			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true);
 			newEgg.setEggX(startX);
 			newEgg.setEggY(startY);
 			eggList.add(newEgg);
@@ -96,43 +97,39 @@ public class EggsGenerator {
 			if (removeEggs(egg)) {
 				i.remove();
 			}
+			if (egg.getEggY() < DOWN_LIMIT) {
+				i.remove();
+			}
 		}
 		timeSinceLastEgg += Gdx.graphics.getDeltaTime();
 	}
 
 	private boolean removeEggs(Egg egg) {
-		if (egg.getStartX() == LEFT_START_X) {
-			if (egg.getEggX() >= egg.getEndX()) {
-				if (score.addScore(egg)) {
-					return true;
-				}
-			}
+		if (score.addScore(egg)) {
+			return true;
 		} else {
-			if (egg.getEggX() <= egg.getEndX()) {
-				if (score.addScore(egg)) {
-					return true;
-				}
+			if ((egg.getEggX() > 98 && egg.getEggX() < LEFT_END_X)
+					|| (egg.getEggX() < 432 && egg.getEggX() > RIGHT_END_X)) {
+				egg.setIsEgg(false);
 			}
 		}
+
 		return false;
 	}
 
 	private void moveEggs(Egg egg) {
-		if (egg.getStartX() == LEFT_START_X) {
-			egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
-			egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
+		if (egg.getIsEgg()) {
+			if (egg.getStartX() == LEFT_START_X) {
+				egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
+				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
+
+			} else {
+				egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
+				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
+			}
 		} else {
-			egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
-			egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
+			egg.setEggY(egg.getEggY() - DOWN_LIMIT * speed * elapsed * 5);
 		}
-
 	}
 
-	public int getPossition() {
-		return possition;
-	}
-
-	public void setPossition(int possition) {
-		this.possition = possition;
-	}
 }
