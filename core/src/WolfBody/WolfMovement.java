@@ -3,8 +3,8 @@ package WolfBody;
 import com.badlogic.gdx.Input;
 import Hands.CreateHands;
 
-public class WolfMovement {
-	private CreateHands hands = new CreateHands(){};
+public class WolfMovement{
+	private CreateHands hands = new CreateHands();
 	private WolfActor wolfActor = new WolfActor();
 
 	public void wolfMovement(int keycode) {
@@ -28,8 +28,6 @@ public class WolfMovement {
 			hands.setHandPossition(4);
 			break;
 
-		default:
-			break;
 		}
 
 	}

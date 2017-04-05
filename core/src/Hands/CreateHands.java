@@ -3,14 +3,14 @@ package Hands;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.nupogodi.game.GameScreen;
 
-public abstract class CreateHands extends Actor {
+public class CreateHands {
 
 	GameScreen screen = new GameScreen();
 	private ArmDownLeft armDownLeft = new ArmDownLeft();
 	private ArmUpLeft armUpLeft = new ArmUpLeft();
 	private ArmDownRight armDownRight = new ArmDownRight();
 	private ArmUpRight armUpRight = new ArmUpRight();
-	private int handPossition;
+	private static int handPossition;
 
 	public void addHands() {
 		screen.addActorOnStage(armDownLeft);
@@ -40,11 +40,11 @@ public abstract class CreateHands extends Actor {
 	}
 
 	public void setHandPossition(int i) {
-		this.handPossition = i;
+		handPossition = i;
 	}
 
 	public int getHandPossition() {
-		return this.handPossition;
+		return handPossition;
 	}
 
 }

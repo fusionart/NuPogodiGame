@@ -10,9 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nupogodi.game.GameScreen;
 
-import Hands.CreateHands;
 import LivesAndScore.Score;
-import WolfBody.WolfMovement;
 
 public class EggsGenerator {
 
@@ -111,17 +109,15 @@ public class EggsGenerator {
 			}
 		} else {
 			if (egg.getEggX() <= egg.getEndX()) {
-				// score.scoreUpdate();
-				return true;
+				if (score.addScore(egg)) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 
 	private void moveEggs(Egg egg) {
-		// System.out.println(egg.getStartX());
-		// System.out.println(egg.getEggX() +
-		// egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
 		if (egg.getStartX() == LEFT_START_X) {
 			egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
 			egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
