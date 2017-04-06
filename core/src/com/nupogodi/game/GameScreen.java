@@ -1,7 +1,9 @@
 package com.nupogodi.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,16 +17,26 @@ import Chickens.Chickens;
 import Chickens.EggsGenerator;
 import LivesAndScore.Lives;
 import LivesAndScore.Score;
+import Screens.MainMenu;
 import WolfBody.WolfMovement;
 
-public class GameScreen extends ApplicationAdapter {
+public class GameScreen extends ApplicationAdapter implements Screen{
 	static Stage gameStage;
+	private Game game;
 	private Background background;
 	private EggsGenerator eggsGenerator;
 	private SpriteBatch batch;
 	private Texture eggTexture, scoreLabel;
 	private WolfMovement wolfMovement;
 	private Lives lives = new Lives();
+	
+	
+//	public GameScreen(final NuPagadiStartScreen nuPagadi) {
+//		this.game = nuPagadi;
+//		gameStage = new Stage();
+//		
+//	}
+
 
 	@Override
 	public void create() {
@@ -83,6 +95,24 @@ public class GameScreen extends ApplicationAdapter {
 
 	public void addActorOnStage(Object object) {
 		gameStage.addActor((Actor) object);
+	}
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render(float delta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -12,21 +12,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.nupogodi.game.GameScreen;
 import com.nupogodi.game.NuPagadiStartScreen;
 
 public class MainMenu implements Screen {
-	private static final int Screen_CenterX = NuPagadiStartScreen.Screen_WIDTH/3 ;
-	private static final int Screen_CenterY = NuPagadiStartScreen.Screen_HEIGH/2;
-	
+	private static final int Screen_CenterX = NuPagadiStartScreen.Screen_WIDTH / 3;
+	private static final int Screen_CenterY = NuPagadiStartScreen.Screen_HEIGH / 2;
+
 	final NuPagadiStartScreen game;
 	private Stage stage;
 	private TextureAtlas atlas;
 	private Skin skin; // the appearance of everything
-	private Table table; //For easier positioning of the objects
-    private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
-    private BitmapFont white;
-	private Label heading; 
-   
+	private Table table; // For easier positioning of the objects
+	private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
+	private BitmapFont white;
+	private Label heading;
+
 	SpriteBatch sprite;
 	private Texture background;
 	private Skin mySkin;
@@ -34,7 +35,7 @@ public class MainMenu implements Screen {
 	private Texture btnSettingsTexture;
 	private Texture btnHelpTexture;
 	private Texture texture, btnHighestScoreTexture;
-	
+
 	public MainMenu(final NuPagadiStartScreen nuPagadi) {
 		this.game = nuPagadi;
 		stage = new Stage();
@@ -44,10 +45,11 @@ public class MainMenu implements Screen {
 		btnSettingsTexture = new Texture(Gdx.files.internal("MainMenu/BtnSettings.png"));
 		btnHighestScoreTexture = new Texture("MainMenu/BtnScore.png");
 	}
-	
-    @Override
+
+	@Override
 	public void show() {
-	//	white = new BitmapFont(Gdx.files.internal("src/fonts/white.fnt"), false);
+		// white = new BitmapFont(Gdx.files.internal("src/fonts/white.fnt"),
+		// false);
 
 	}
 
@@ -59,12 +61,15 @@ public class MainMenu implements Screen {
 		game.batch.draw(background, 1, 1);
 
 		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
+		if (Gdx.input.isTouched()) {
+			game.setScreen(new GameScreen());
+		}
 
-		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX/5, 250);
+		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
 
-		game.batch.draw(btnSettingsTexture, Screen_CenterX +  Screen_CenterX/5, 200);
+		game.batch.draw(btnSettingsTexture, Screen_CenterX + Screen_CenterX / 5, 200);
 
-		game.batch.draw(btnHighestScoreTexture, Screen_CenterX + Screen_CenterX/5, 150);
+		game.batch.draw(btnHighestScoreTexture, Screen_CenterX + Screen_CenterX / 5, 150);
 
 		game.batch.end();
 
@@ -72,31 +77,31 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
