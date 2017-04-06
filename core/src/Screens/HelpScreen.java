@@ -15,35 +15,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.nupogodi.game.GameScreen;
 import com.nupogodi.game.GameStartScreen;
 
-public class MainMenu implements Screen {
+public class HelpScreen implements Screen {
 	private static final int Screen_CenterX = GameStartScreen.Screen_WIDTH / 3;
 	private static final int Screen_CenterY = GameStartScreen.Screen_HEIGH / 2;
 
 	final GameStartScreen game;
 	private Stage stage;
-	private TextureAtlas atlas;
-	private Skin skin; // the appearance of everything
-	private Table table; // For easier positioning of the objects
-	private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
-	private BitmapFont white;
-	private Label heading;
-
 	SpriteBatch sprite;
 	private Texture background;
-	private Skin mySkin;
-	private Texture btnPlayGameTexture;
-	private Texture btnSettingsTexture;
-	private Texture btnHelpTexture;
-	private Texture texture, btnHighestScoreTexture;
+	private Texture helpLabel, backArrow;
 
-	public MainMenu(final GameStartScreen nuPagadi) {
+	public HelpScreen(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;
-		stage = new Stage();
-		background = new Texture(Gdx.files.internal("BackgroundScreen.png"));
-		btnPlayGameTexture = new Texture(Gdx.files.internal("MainMenu/BtnPlay.png"));
-		btnHelpTexture = new Texture(Gdx.files.internal("MainMenu/BtnHelp.png"));
-		btnSettingsTexture = new Texture(Gdx.files.internal("MainMenu/BtnSettings.png"));
-		btnHighestScoreTexture = new Texture("MainMenu/BtnScore.png");
+		background = new Texture(Gdx.files.internal("HelpScreen/BackgroundScreen.png"));
+		helpLabel = new Texture(Gdx.files.internal("HelpScreen/HelpScreen5.png"));
+		backArrow = new Texture("HelpScreen/backArrow3.png");
+
 	}
 
 	@Override
@@ -58,50 +45,42 @@ public class MainMenu implements Screen {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.begin();
-		game.batch.draw(background, 1, 1);
 
-		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
+		game.batch.draw(background, 0, 0);
+		game.batch.draw(helpLabel, 2, 25);
+		game.batch.draw(backArrow, 3, 35);
+		
 		if (Gdx.input.isTouched()) {
-			game.setScreen(new GameScreen());
+			game.setScreen(new MainMenu(game));
+		
 		}
-
-		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
-
-		game.batch.draw(btnSettingsTexture, Screen_CenterX + Screen_CenterX / 5, 200);
-
-		game.batch.draw(btnHighestScoreTexture, Screen_CenterX + Screen_CenterX / 5, 150);
-
+		
 		game.batch.end();
 
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		
 
 	}
 
 	@Override
 	public void pause() {
-		
 
 	}
 
 	@Override
 	public void resume() {
-		
 
 	}
 
 	@Override
 	public void hide() {
-		
 
 	}
 
 	@Override
 	public void dispose() {
-		
 
 	}
 
