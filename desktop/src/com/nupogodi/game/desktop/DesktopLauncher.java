@@ -20,9 +20,13 @@ public class DesktopLauncher {
 		new LwjglApplication (new GameScreen(), config); 
 		//new LwjglApplication(new UserInput(), config); //Working
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//new LwjglApplication(new NuPagadiStartScreen(), config);
 =======
 		new LwjglApplication(new GameStartScreen(), config);
 >>>>>>> 9edd3ce1507dcbc689c19675c318e5502dab0cfb
+=======
+		//new LwjglApplication(new GameStartScreen(), config);
+>>>>>>> 241aaa821aa1b2f1e563241ef686f9a764b5236f
 	}
 }

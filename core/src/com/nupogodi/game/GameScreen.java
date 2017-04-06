@@ -20,7 +20,7 @@ import LivesAndScore.Score;
 import Screens.MainMenu;
 import WolfBody.WolfMovement;
 
-public class GameScreen extends ApplicationAdapter implements Screen{
+public class GameScreen extends ApplicationAdapter implements Screen {
 	static Stage gameStage;
 	private Game game;
 	private Background background;
