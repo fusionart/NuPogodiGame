@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import Screens.HelpScreen;
 import Screens.MainMenu;
 
 import Screens.Splash;
@@ -31,9 +32,9 @@ public class NuPagadiStartScreen extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		// setScreen(new Splash());
-		setScreen(new MainMenu(this));
+		//setScreen(new MainMenu(this));
 	//	gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
-		// setScreen(new HelpScreen(this));
+		 setScreen(new HelpScreen(this));
 		// setScreen(new SettingsScreen(this));
 		// setScreen(new ScoreScreen(this));
 		// setScreen(new GameOver(this));
