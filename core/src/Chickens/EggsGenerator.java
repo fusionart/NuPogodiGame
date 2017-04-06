@@ -127,7 +127,6 @@ public class EggsGenerator {
 				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
 				egg.setOrigin(egg.getWidth()/2,egg.getHeight()/2);
 				egg.rotateBy(0.2f);
-				System.out.println(egg.getRotation());
 			} else {
 				egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
 				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
