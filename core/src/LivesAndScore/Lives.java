@@ -1,8 +1,11 @@
 package LivesAndScore;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Lives {
 	private static final int LIVES = 10;
 	private static int currentLives = LIVES;
+	
 	
 	public void lostLive (){
 		currentLives-=1;
