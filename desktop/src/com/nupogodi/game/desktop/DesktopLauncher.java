@@ -3,7 +3,9 @@ package com.nupogodi.game.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.nupogodi.game.GameScreen;
-import com.nupogodi.game.NuPogodiStartScreen;
+import com.nupogodi.game.NuPagadiStartScreen;
+
+import InputProcessor.UserInput;
 
 public class DesktopLauncher {
 	private static final int SCREEN_WIDTH = 600;
@@ -11,11 +13,12 @@ public class DesktopLauncher {
 
 	public static void main(String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Ну Погоди ";
+		config.title = "Nu Pagadi!  ";
 		config.width = SCREEN_WIDTH;
 		config.height = SCREEN_HEIGH;
 
-		new LwjglApplication (new GameScreen(), config); 
-		//new LwjglApplication(new NuPagadiStartScreen(), config); Gonna work out over it 
+		//new LwjglApplication (new GameScreen(), config); 
+		//new LwjglApplication(new UserInput(), config); //Working
+		new LwjglApplication(new NuPagadiStartScreen(), config);
 	}
 }
