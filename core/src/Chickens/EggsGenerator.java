@@ -16,8 +16,8 @@ import LivesAndScore.Score;
 public class EggsGenerator {
 
 	GameScreen gameScreen = new GameScreen();
-	public static final float MINIMUM_TIME_BETWEEN_EGGS = .5f;
-	public static final float LEFT_START_X = 30;
+	public static final float MINIMUM_TIME_BETWEEN_EGGS = .9f;
+	public static final float LEFT_START_X = 31;
 	public static final float LEFT_END_X = 130;
 	public static final float RIGHT_START_X = 570;
 	public static final float RIGHT_END_X = 460;
@@ -48,16 +48,16 @@ public class EggsGenerator {
 	public void addEggs() {
 		switch (generateRandom()) {
 		case 1:
-			createEggs(LEFT_START_X, LEFT_END_X, DOWN_START_Y, DOWN_END_Y, eggTexture, generateRandom());
+			createEggs(LEFT_START_X, LEFT_END_X, DOWN_START_Y, DOWN_END_Y, eggTexture);
 			break;
 		case 2:
-			createEggs(LEFT_START_X, LEFT_END_X, UP_START_Y, UP_END_Y, eggTexture,generateRandom());
+			createEggs(LEFT_START_X, LEFT_END_X, UP_START_Y, UP_END_Y, eggTexture);
 			break;
 		case 3:
-			createEggs(RIGHT_START_X, RIGHT_END_X, DOWN_START_Y, DOWN_END_Y, eggTexture,generateRandom());
+			createEggs(RIGHT_START_X, RIGHT_END_X, DOWN_START_Y, DOWN_END_Y, eggTexture);
 			break;
 		case 4:
-			createEggs(RIGHT_START_X, RIGHT_END_X, UP_START_Y, UP_END_Y, eggTexture,generateRandom());
+			createEggs(RIGHT_START_X, RIGHT_END_X, UP_START_Y, UP_END_Y, eggTexture);
 			break;
 
 		default:
@@ -66,9 +66,9 @@ public class EggsGenerator {
 
 	}
 
-	private void createEggs(float startX, float endX, float startY, float endY, Texture eggTexture, int eggLocation) {
+	private void createEggs(float startX, float endX, float startY, float endY, Texture eggTexture) {
 		if (canCreateEgg()) {
-			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true, eggLocation);
+			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true);
 			newEgg.setEggX(startX);
 			newEgg.setEggY(startY);
 			newEgg.setOrigin(newEgg.getWidth()/2, newEgg.getHeight()/2);
@@ -93,10 +93,11 @@ public class EggsGenerator {
 		}
 	}
 
-	public void update() {
+	public void update(SpriteBatch batch) {
 		Iterator<Egg> i = eggList.iterator();
 		while (i.hasNext()) {
 			Egg egg = i.next();
+			egg.draw(batch);
 			moveEggs(egg);
 			if (removeEggs(egg)) {
 				i.remove();

@@ -75,11 +75,12 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		gameStage.draw();
 		batch.begin();
 		if (lives.getLives() > 0) {
-			eggsGenerator.drawEveryEgg(batch);
+			//eggsGenerator.drawEveryEgg(batch);
+			eggsGenerator.update(batch);
 		}
 		batch.end();
 		createEggs();
-		eggsGenerator.update();
+		
 	}
 
 	@Override
