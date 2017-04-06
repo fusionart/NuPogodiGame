@@ -13,19 +13,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.nupogodi.game.GameScreen;
-import com.nupogodi.game.NuPagadiStartScreen;
+import com.nupogodi.game.GameStartScreen;
 
 public class HelpScreen implements Screen {
-	private static final int Screen_CenterX = NuPagadiStartScreen.Screen_WIDTH / 3;
-	private static final int Screen_CenterY = NuPagadiStartScreen.Screen_HEIGH / 2;
+	private static final int Screen_CenterX = GameStartScreen.Screen_WIDTH / 3;
+	private static final int Screen_CenterY = GameStartScreen.Screen_HEIGH / 2;
 
-	final NuPagadiStartScreen game;
+	final GameStartScreen game;
 	private Stage stage;
 	SpriteBatch sprite;
 	private Texture background;
 	private Texture helpLabel, backArrow;
 
-	public HelpScreen(final NuPagadiStartScreen nuPagadi) {
+	public HelpScreen(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;
 		background = new Texture(Gdx.files.internal("HelpScreen/BackgroundScreen.png"));
 		helpLabel = new Texture(Gdx.files.internal("HelpScreen/HelpScreen5.png"));
@@ -49,10 +49,12 @@ public class HelpScreen implements Screen {
 		game.batch.draw(background, 0, 0);
 		game.batch.draw(helpLabel, 2, 25);
 		game.batch.draw(backArrow, 3, 35);
-
+		
 		if (Gdx.input.isTouched()) {
 			game.setScreen(new MainMenu(game));
+		
 		}
+		
 		game.batch.end();
 
 	}

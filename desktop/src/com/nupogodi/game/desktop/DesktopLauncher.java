@@ -3,7 +3,7 @@ package com.nupogodi.game.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.nupogodi.game.GameScreen;
-import com.nupogodi.game.NuPagadiStartScreen;
+import com.nupogodi.game.GameStartScreen;
 
 import InputProcessor.UserInput;
 
@@ -19,6 +19,6 @@ public class DesktopLauncher {
 
 		//new LwjglApplication (new GameScreen(), config); 
 		//new LwjglApplication(new UserInput(), config); //Working
-		new LwjglApplication(new NuPagadiStartScreen(), config);
+		new LwjglApplication(new GameStartScreen(), config);
 	}
 }
