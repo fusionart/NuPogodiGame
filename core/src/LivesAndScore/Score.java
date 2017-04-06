@@ -1,6 +1,7 @@
 package LivesAndScore;
 
 import Chickens.Egg;
+import Chickens.EggsGenerator;
 import Hands.CreateHands;
 
 public class Score {
@@ -26,23 +27,27 @@ public class Score {
 	}
 
 	public boolean addScore(Egg egg) {
-		if (handsPossition.getHandPossition() == 1 && egg.getEggY() < 150 && egg.getEggX() > 95
-				&& egg.getEggX() < 100) {
+		if (handsPossition.getHandPossition() == 1 && egg.getEggLocation() == 1
+				&& egg.getEggX() > EggsGenerator.LEFT_END_X - EggsGenerator.RANGE
+				&& egg.getEggX() < EggsGenerator.LEFT_END_X) {
 			scoreUpdate();
 			return true;
 		}
-		if (handsPossition.getHandPossition() == 2 && egg.getEggY() > 200 && egg.getEggX() > 95
-				&& egg.getEggX() < 100) {
+		if (handsPossition.getHandPossition() == 2 && egg.getEggLocation() == 2
+				&& egg.getEggX() > EggsGenerator.LEFT_END_X - EggsGenerator.RANGE
+				&& egg.getEggX() < EggsGenerator.LEFT_END_X) {
 			scoreUpdate();
 			return true;
 		}
-		if (handsPossition.getHandPossition() == 3 && egg.getEggY() < 150 && egg.getEggX() > 430
-				&& egg.getEggX() < 500) {
+		if (handsPossition.getHandPossition() == 3 && egg.getEggLocation() == 3
+				&& egg.getEggX() > EggsGenerator.RIGHT_END_X
+				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE) {
 			scoreUpdate();
 			return true;
 		}
-		if (handsPossition.getHandPossition() == 4 && egg.getEggY() > 200 && egg.getEggX() > 430
-				&& egg.getEggX() < 500) {
+		if (handsPossition.getHandPossition() == 4 && egg.getEggLocation() == 4
+				&& egg.getEggX() > EggsGenerator.RIGHT_END_X
+				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE) {
 			scoreUpdate();
 			return true;
 		}
