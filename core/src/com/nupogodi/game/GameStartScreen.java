@@ -32,7 +32,7 @@ public class GameStartScreen extends Game {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		setScreen(new GameScreen());
+		//setScreen(new GameScreen());
 		// setScreen(new Splash());
 		//setScreen(new MainMenu(this));
 	//	gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));

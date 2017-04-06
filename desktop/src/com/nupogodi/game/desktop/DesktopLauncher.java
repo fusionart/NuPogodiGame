@@ -19,7 +19,6 @@ public class DesktopLauncher {
 
 		//new LwjglApplication (new GameScreen(), config); 
 		//new LwjglApplication(new UserInput(), config); //Working
-		//new LwjglApplication(new NuPagadiStartScreen(), config);
 
 		new LwjglApplication(new GameScreen(), config);
 		//new LwjglApplication(new GameStartScreen(), config);
