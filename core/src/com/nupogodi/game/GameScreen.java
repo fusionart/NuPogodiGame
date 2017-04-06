@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -26,6 +27,7 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 	private Background background;
 	private EggsGenerator eggsGenerator;
 	private SpriteBatch batch;
+	private TextureRegion eggTextReg;
 	private Texture eggTexture, scoreLabel;
 	private WolfMovement wolfMovement;
 	private Lives lives = new Lives();
@@ -43,7 +45,8 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		batch = new SpriteBatch();
 		wolfMovement = new WolfMovement();
 		eggTexture = new Texture(Gdx.files.internal("newEgg.png"));
-		eggsGenerator = new EggsGenerator(eggTexture);
+		eggTextReg = new TextureRegion(new Texture(Gdx.files.internal("newEgg.png")),20,27);
+		eggsGenerator = new EggsGenerator(eggTextReg);
 		gameStage = new Stage(new ScreenViewport());
 		background = new Background();
 		gameStage.addActor(background);
@@ -75,11 +78,12 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		gameStage.draw();
 		batch.begin();
 		if (lives.getLives() > 0) {
-			eggsGenerator.drawEveryEgg(batch);
+			//eggsGenerator.drawEveryEgg(batch);
+			eggsGenerator.update(batch);
 		}
 		batch.end();
 		createEggs();
-		eggsGenerator.update();
+		
 	}
 
 	@Override

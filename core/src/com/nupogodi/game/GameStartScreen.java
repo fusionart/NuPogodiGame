@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import Screens.GameOver;
 import Screens.HelpScreen;
 import Screens.MainMenu;
-
+import Screens.ScoreScreen;
 import Screens.Splash;
 
 public class GameStartScreen extends Game {
@@ -38,7 +38,7 @@ public class GameStartScreen extends Game {
 	//	gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 		// setScreen(new HelpScreen(this));
 		// setScreen(new SettingsScreen(this));
-		// setScreen(new ScoreScreen(this));
+		 setScreen(new ScoreScreen(this));
 		// setScreen(new GameOver(this));
 		// setScreen(new OptionScreen(this));
 
