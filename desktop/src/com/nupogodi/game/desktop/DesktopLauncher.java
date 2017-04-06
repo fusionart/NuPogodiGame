@@ -22,6 +22,5 @@ public class DesktopLauncher {
 		//new LwjglApplication(new NuPagadiStartScreen(), config);
 
 		//new LwjglApplication(new GameStartScreen(), config);
-		//new LwjglApplication(new GameStartScreen(), config);
 	}
 }

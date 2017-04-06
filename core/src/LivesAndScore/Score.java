@@ -30,26 +30,26 @@ public class Score {
 		if (handsPossition.getHandPossition() == 1 && egg.getEggY() < EggsGenerator.DOWN_END_Y + EggsGenerator.RANGE
 				&& egg.getEggY() > EggsGenerator.DOWN_END_Y
 				&& egg.getEggX() > EggsGenerator.LEFT_END_X - EggsGenerator.RANGE
-				&& egg.getEggX() < EggsGenerator.LEFT_END_X) {
+				&& egg.getEggX() < EggsGenerator.LEFT_END_X && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;
 		}
 		if (handsPossition.getHandPossition() == 2 && egg.getEggY() < EggsGenerator.UP_END_Y + EggsGenerator.RANGE
 				&& egg.getEggY() > EggsGenerator.UP_END_Y
 				&& egg.getEggX() > EggsGenerator.LEFT_END_X - EggsGenerator.RANGE
-				&& egg.getEggX() < EggsGenerator.LEFT_END_X) {
+				&& egg.getEggX() < EggsGenerator.LEFT_END_X && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;
 		}
 		if (handsPossition.getHandPossition() == 3 && egg.getEggY() < EggsGenerator.DOWN_END_Y + EggsGenerator.RANGE
 				&& egg.getEggY() > EggsGenerator.DOWN_END_Y && egg.getEggX() > EggsGenerator.RIGHT_END_X
-				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE) {
+				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;
 		}
 		if (handsPossition.getHandPossition() == 4 && egg.getEggY() < EggsGenerator.UP_END_Y + EggsGenerator.RANGE
 				&& egg.getEggY() > EggsGenerator.UP_END_Y && egg.getEggX() > EggsGenerator.RIGHT_END_X
-				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE) {
+				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;
 		}
