@@ -14,6 +14,7 @@ public class Egg extends Actor {
 	private float eggX;
 	private float eggY;
 	private Texture eggTexture;
+	private TextureRegion eggTextReg;
 	private boolean isEgg;
 
 	public Egg(float startX, float endX, float startY, float endY, Texture eggTexture, boolean isEgg) {
@@ -23,6 +24,15 @@ public class Egg extends Actor {
 		setEndY(endY);
 		setIsEgg(isEgg);
 		this.eggTexture = eggTexture;
+	}
+
+	public Egg(float startX, float endX, float startY, float endY, TextureRegion eggTextReg, boolean isEgg) {
+		setStartX(startX);
+		setEndX(endX);
+		setStartY(startY);
+		setEndY(endY);
+		setIsEgg(isEgg);
+		this.eggTextReg = eggTextReg;
 	}
 
 	public float getStartX() {
@@ -73,7 +83,9 @@ public class Egg extends Actor {
 	}
 
 	public void draw(Batch batch) {
-		batch.draw(eggTexture, eggX, eggY);
+		// batch.draw(eggTexture, eggX, eggY);
+		batch.draw(eggTextReg, eggX, eggY, 10, 27/2, 20, 27,
+				1, 1, getRotation());
 	}
 
 	public float getEggX() {

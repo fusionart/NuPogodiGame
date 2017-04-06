@@ -8,6 +8,7 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.nupogodi.game.GameScreen;
 
 import LivesAndScore.Lives;
@@ -18,7 +19,7 @@ public class EggsGenerator {
 	GameScreen gameScreen = new GameScreen();
 	public static final float MINIMUM_TIME_BETWEEN_EGGS = .9f;
 	public static final float LEFT_START_X = 31;
-	public static final float LEFT_END_X = 130;
+	public static final float LEFT_END_X = 120;
 	public static final float RIGHT_START_X = 570;
 	public static final float RIGHT_END_X = 460;
 	public static final float DOWN_START_Y = 175;
@@ -30,6 +31,7 @@ public class EggsGenerator {
 	private float speed = 0.5f; // speed of falling eggs
 	private float elapsed = 0.01f;
 	private Texture eggTexture;
+	private TextureRegion eggTextReg;
 	private Egg newEgg;
 	private List<Egg> eggList = new ArrayList<Egg>();
 	private float timeSinceLastEgg = 1;
@@ -45,19 +47,23 @@ public class EggsGenerator {
 
 	}
 
+	public EggsGenerator(TextureRegion eggTextReg) {
+		this.eggTextReg = eggTextReg;
+	}
+
 	public void addEggs() {
 		switch (generateRandom()) {
 		case 1:
-			createEggs(LEFT_START_X, LEFT_END_X, DOWN_START_Y, DOWN_END_Y, eggTexture);
+			createEggs(LEFT_START_X, LEFT_END_X, DOWN_START_Y, DOWN_END_Y, eggTextReg);
 			break;
 		case 2:
-			createEggs(LEFT_START_X, LEFT_END_X, UP_START_Y, UP_END_Y, eggTexture);
+			createEggs(LEFT_START_X, LEFT_END_X, UP_START_Y, UP_END_Y, eggTextReg);
 			break;
 		case 3:
-			createEggs(RIGHT_START_X, RIGHT_END_X, DOWN_START_Y, DOWN_END_Y, eggTexture);
+			createEggs(RIGHT_START_X, RIGHT_END_X, DOWN_START_Y, DOWN_END_Y, eggTextReg);
 			break;
 		case 4:
-			createEggs(RIGHT_START_X, RIGHT_END_X, UP_START_Y, UP_END_Y, eggTexture);
+			createEggs(RIGHT_START_X, RIGHT_END_X, UP_START_Y, UP_END_Y, eggTextReg);
 			break;
 
 		default:
@@ -66,12 +72,12 @@ public class EggsGenerator {
 
 	}
 
-	private void createEggs(float startX, float endX, float startY, float endY, Texture eggTexture) {
+	private void createEggs(float startX, float endX, float startY, float endY, TextureRegion eggTexture) {
 		if (canCreateEgg()) {
 			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true);
 			newEgg.setEggX(startX);
 			newEgg.setEggY(startY);
-			newEgg.setOrigin(newEgg.getWidth()/2, newEgg.getHeight()/2);
+			newEgg.setOrigin(newEgg.getWidth() / 2, newEgg.getHeight() / 2);
 			eggList.add(newEgg);
 			timeSinceLastEgg = 0;
 		}
@@ -128,16 +134,21 @@ public class EggsGenerator {
 			if (egg.getStartX() == LEFT_START_X) {
 				egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
 				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
-				egg.setOrigin(egg.getWidth() / 2, egg.getHeight() / 2);
-				egg.rotateBy(0.2f);
+				egg.rotateBy(-3*eggMovement(egg) * speed * elapsed);
 			} else {
 				egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
 				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
-				egg.setRotation(20f);
+				egg.rotateBy(3*eggMovement(egg) * speed * elapsed);
 			}
 		} else {
 			egg.setEggY(egg.getEggY() - DOWN_LIMIT * speed * elapsed * 5);
 		}
+	}
+
+	private float eggMovement(Egg egg) {
+		return (float) Math.sqrt(egg.directionX(egg.getStartX(), egg.getEndX())
+				* egg.directionX(egg.getStartX(), egg.getEndX())
+				+ egg.directionY(egg.getStartY(), egg.getEndY()) * egg.directionY(egg.getStartY(), egg.getEndY()));
 	}
 
 }
