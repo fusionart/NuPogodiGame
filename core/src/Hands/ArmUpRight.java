@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class ArmUpRight extends Actor {
-	Texture armUpRight = new Texture(Gdx.files.internal("WolfArmsUpRight.png"));
+	Texture armUpRight = new Texture(Gdx.files.internal("arms/armUpRight.png"));
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(armUpRight, 360, 180);
+		batch.draw(armUpRight, 0, 0);
 	}
 
 }

@@ -26,13 +26,13 @@ public class Score {
 	}
 
 	public boolean addScore(Egg egg) {
-		if (handsPossition.getHandPossition() == 1 && egg.getEggY() < 150 && egg.getEggX() > 100
-				&& egg.getEggX() < 120) {
+		if (handsPossition.getHandPossition() == 1 && egg.getEggY() < 150 && egg.getEggX() > 95
+				&& egg.getEggX() < 100) {
 			scoreUpdate();
 			return true;
 		}
-		if (handsPossition.getHandPossition() == 2 && egg.getEggY() > 200 && egg.getEggX() > 100
-				&& egg.getEggX() < 120) {
+		if (handsPossition.getHandPossition() == 2 && egg.getEggY() > 200 && egg.getEggX() > 95
+				&& egg.getEggX() < 100) {
 			scoreUpdate();
 			return true;
 		}

@@ -7,10 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class ArmDownLeft extends Actor {
 
-	Texture armDownLeft = new Texture(Gdx.files.internal("WolfArmsDownLeft.png"));
+	Texture armDownLeft = new Texture(Gdx.files.internal("Arms/armDownLeft.png"));
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(armDownLeft, 130, 70);
+		batch.draw(armDownLeft, 0, 0);
 	}
 }
