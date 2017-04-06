@@ -26,12 +26,12 @@ public class EggsGenerator {
 	private static final float UP_START_Y = 270;
 	private static final float UP_END_Y = 210;
 	private static final float DOWN_LIMIT = 20;
-	private float speed = 0.9f;
+	private float speed = 0.5f; // speed of falling eggs
 	private float elapsed = 0.01f;
 	private Texture eggTexture;
 	private Egg newEgg;
 	private List<Egg> eggList = new ArrayList<Egg>();
-	private float timeSinceLastEgg = 0;
+	private float timeSinceLastEgg = 1;
 	private Random rand = new Random();
 	private Score score = new Score(0);
 	private Lives lives = new Lives();

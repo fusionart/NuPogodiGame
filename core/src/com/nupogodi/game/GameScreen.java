@@ -22,7 +22,7 @@ public class GameScreen extends ApplicationAdapter {
 	private Background background;
 	private EggsGenerator eggsGenerator;
 	private SpriteBatch batch;
-	private Texture eggTexture;
+	private Texture eggTexture, scoreLabel;
 	private WolfMovement wolfMovement;
 	private Lives lives = new Lives();
 
@@ -35,6 +35,7 @@ public class GameScreen extends ApplicationAdapter {
 		gameStage = new Stage(new ScreenViewport());
 		background = new Background();
 		gameStage.addActor(background);
+		
 
 		Chickens chickens = new Chickens();
 		gameStage.addActor(chickens);
