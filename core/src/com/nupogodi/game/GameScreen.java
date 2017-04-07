@@ -4,8 +4,10 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -31,8 +33,10 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 	private TextureRegion eggTextReg;
 	private Texture eggTexture, scoreLabel;
 	private WolfMovement wolfMovement;
-	private Lives lives = new Lives();
+	private Lives lives;
 	boolean gameOver = false;
+	BitmapFont font;
+	private Score score;
 	
 	@Override
 	public void create() {
@@ -44,24 +48,16 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		gameStage = new Stage(new ScreenViewport());
 		background = new Background();
 		gameStage.addActor(background);
+		score = new Score();
+		lives = new Lives();
 		
 
 		Chickens chickens = new Chickens();
 		gameStage.addActor(chickens);
 
-		Actor buttons = new Actor();
-		gameStage.addActor(buttons);
+		font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
 
 		addListenerToStage();
-	}
-
-
-	public GameScreen(Game aGame) {
-		create();
-
-	}
-	public GameScreen() {
-
 	}
 
 	private void addListenerToStage() {
@@ -82,12 +78,15 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		gameStage.draw();
 		batch.begin();
 		if (lives.getLives() > 0) {
-			//eggsGenerator.drawEveryEgg(batch);
 			eggsGenerator.update(batch);
 		}
 		if(lives.getLives() == 0) {
 	//		game.setScreen(new GameOver(game));
 		}
+		font.setColor(Color.BLACK);
+		font.draw(batch, "Score: "+String.valueOf(score.getScore()), 450, 420);
+		font.draw(batch, "Lives: "+String.valueOf(lives.getLives()), 150,420);
+		System.out.println(score.getScore());
 		batch.end();
 		createEggs();
 		

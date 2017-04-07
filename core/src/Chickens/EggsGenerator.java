@@ -28,7 +28,7 @@ public class EggsGenerator {
 	public static final float UP_END_Y = 270;
 	public static final float RANGE = 8;
 	public static final float DOWN_LIMIT = 20;
-	private float speed = 0.5f; // speed of falling eggs
+	public static float speed = 0.5f;
 	private float elapsed = 0.01f;
 	private Texture eggTexture;
 	private TextureRegion eggTextReg;
@@ -134,11 +134,11 @@ public class EggsGenerator {
 			if (egg.getStartX() == LEFT_START_X) {
 				egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
 				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
-				egg.rotateBy(-3*eggMovement(egg) * speed * elapsed);
+				egg.rotateBy(-3 * eggMovement(egg) * speed * elapsed);
 			} else {
 				egg.setEggX(egg.getEggX() + egg.directionX(egg.getStartX(), egg.getEndX()) * speed * elapsed);
 				egg.setEggY(egg.getEggY() + egg.directionY(egg.getStartY(), egg.getEndY()) * speed * elapsed);
-				egg.rotateBy(3*eggMovement(egg) * speed * elapsed);
+				egg.rotateBy(3 * eggMovement(egg) * speed * elapsed);
 			}
 		} else {
 			egg.setEggY(egg.getEggY() - DOWN_LIMIT * speed * elapsed * 5);
@@ -149,6 +149,10 @@ public class EggsGenerator {
 		return (float) Math.sqrt(egg.directionX(egg.getStartX(), egg.getEndX())
 				* egg.directionX(egg.getStartX(), egg.getEndX())
 				+ egg.directionY(egg.getStartY(), egg.getEndY()) * egg.directionY(egg.getStartY(), egg.getEndY()));
+	}
+
+	public static void increaseSpeed(float speedI) {
+		speed += speedI;
 	}
 
 }

@@ -54,15 +54,11 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 	private Sprite playBTNSprite;
 	UserInput inputprocessor;
 
-<<<<<<< HEAD
 	// Gdx.input.setInputProcessor(inputProcessor);
-	public MainMenu(final GameStartScreen nuPogodi) {
-		this.game = nuPogodi;
-=======
 
 	public MainMenu(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;
->>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
+
 		inputprocessor = new UserInput();
 
 		stage = new Stage();
@@ -71,11 +67,7 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 		btnHelpTexture = new Texture(Gdx.files.internal("MainMenu/BtnHelp.png"));
 		btnSettingsTexture = new Texture(Gdx.files.internal("MainMenu/BtnSettings.png"));
 		btnHighestScoreTexture = new Texture("MainMenu/BtnScore.png");
-<<<<<<< HEAD
 		playBTNSprite = new Sprite(btnPlayGameTexture);
-=======
-		//btnPlayGame.getTouchable();
->>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
 	}
 
 	@Override
@@ -89,18 +81,15 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.begin();
 		game.batch.draw(background, 1, 1);
-
-<<<<<<< HEAD
 		game.batch.draw(playBTNSprite, Screen_CenterX, 300);
-
 		// game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5,
 		// 250);
-=======
+
 		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
 		 
 		 if(Gdx.input.justTouched())
 		   {
-//			   
+//			  
 				//touchPointX.set(Gdx.input.getX());
 				//touchPointY.set(Gdx.input.getY());
 			   // if( btnPlayGameTexture).getBoundingRectangles().contains(touchPointX,touchPointY))
@@ -110,7 +99,6 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 			   
 			
 		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
->>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
 
 		// game.batch.draw(btnSettingsTexture, Screen_CenterX + Screen_CenterX /
 		// 5, 200);
@@ -154,7 +142,6 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 //	   }
    }
 	@Override
-<<<<<<< HEAD
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
 		return false;
@@ -180,17 +167,11 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		// camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(),
-		// 0));
-//		System.out.println("coord" + screenX + " : " + screenY);
-//		System.out.println("x" + Screen_CenterX + " / " + (Screen_CenterX + playBTNSprite.getWidth()));
-//		System.out.println("y " + (GameStartScreen.Screen_HEIGH - 300) + " / "
-//				+ (GameStartScreen.Screen_HEIGH - 300 - playBTNSprite.getHeight()));
 		if ((screenX > Screen_CenterX && screenX < (Screen_CenterX + playBTNSprite.getWidth()))
 				&& (screenY < GameStartScreen.Screen_HEIGH - 300)
 				&& screenY > (GameStartScreen.Screen_HEIGH - 300 - playBTNSprite.getHeight())) {
 			System.out.println("playBTNSprite clicked");
-			game.setScreen(new GameScreen(game));
+			game.setScreen(new GameScreen());
 		}
 		return true;
 	}
@@ -216,20 +197,14 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 	@Override
 	public void create() {
 		// TODO Auto-generated method stub
-
-=======
+	}
 	public void dispose() {
 		stage.dispose();
->>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
 	}
 
 	@Override
 	public void render() {
 		// TODO Auto-generated method stub
 
-	}
-	@Override
-	public void dispose() {
-		stage.dispose();
 	}
 }

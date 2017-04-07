@@ -15,7 +15,7 @@ public class DesktopLauncher {
 
 	public static void main(String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Nu Pagadi!  ";
+		config.title = "Nu Pogodi!";
 		config.width = SCREEN_WIDTH;
 		config.height = SCREEN_HEIGH;
 
