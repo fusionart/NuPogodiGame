@@ -17,7 +17,7 @@ import LivesAndScore.Score;
 public class EggsGenerator {
 
 	GameScreen gameScreen = new GameScreen();
-	public static final float MINIMUM_TIME_BETWEEN_EGGS = .9f;
+	public static final float MINIMUM_TIME_BETWEEN_EGGS = 1f;
 	public static final float LEFT_START_X = 31;
 	public static final float LEFT_END_X = 120;
 	public static final float RIGHT_START_X = 570;
@@ -26,7 +26,7 @@ public class EggsGenerator {
 	public static final float DOWN_END_Y = 130;
 	public static final float UP_START_Y = 315;
 	public static final float UP_END_Y = 270;
-	public static final float RANGE = 8;
+	public static final float RANGE = 10;
 	public static final float DOWN_LIMIT = 20;
 	public static float speed = 0.5f;
 	private float elapsed = 0.01f;
@@ -122,7 +122,10 @@ public class EggsGenerator {
 		} else {
 			if ((egg.getEggX() > LEFT_END_X - RANGE && egg.getEggX() < LEFT_END_X)
 					|| (egg.getEggX() < RIGHT_END_X + RANGE && egg.getEggX() > RIGHT_END_X)) {
-				egg.setIsEgg(false);
+				if (((egg.getEggY() > UP_END_Y - RANGE && egg.getEggY() < UP_END_Y + RANGE)
+						|| (egg.getEggY() > DOWN_END_Y - RANGE && egg.getEggY() < DOWN_END_Y + RANGE))) {
+					egg.setIsEgg(false);
+				}
 			}
 		}
 

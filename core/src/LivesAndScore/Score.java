@@ -33,10 +33,10 @@ public class Score {
 	public void levelUp(int score) {
 		switch (score) {
 		case 10:
-			EggsGenerator.increaseSpeed(0.05f);
+			EggsGenerator.increaseSpeed(0.1f);
 			break;
 		case 20:
-			EggsGenerator.increaseSpeed(0.05f);
+			EggsGenerator.increaseSpeed(0.1f);
 			break;
 		case 30:
 			EggsGenerator.increaseSpeed(0.05f);
@@ -56,28 +56,28 @@ public class Score {
 	}
 
 	public boolean addScore(Egg egg) {
-		if (handsPossition.getHandPossition() == 1 && egg.getEggY() < EggsGenerator.DOWN_END_Y + EggsGenerator.RANGE
-				&& egg.getEggY() > EggsGenerator.DOWN_END_Y
+		if (handsPossition.getHandPossition() == 1 && egg.getEggY() > EggsGenerator.DOWN_END_Y - EggsGenerator.RANGE
+				&& egg.getEggY() < EggsGenerator.DOWN_END_Y + EggsGenerator.RANGE
 				&& egg.getEggX() > EggsGenerator.LEFT_END_X - EggsGenerator.RANGE
 				&& egg.getEggX() < EggsGenerator.LEFT_END_X && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;
 		}
-		if (handsPossition.getHandPossition() == 2 && egg.getEggY() < EggsGenerator.UP_END_Y + EggsGenerator.RANGE
-				&& egg.getEggY() > EggsGenerator.UP_END_Y
+		if (handsPossition.getHandPossition() == 2 && egg.getEggY() > EggsGenerator.UP_END_Y - EggsGenerator.RANGE
+				&& egg.getEggY() < EggsGenerator.UP_END_Y + EggsGenerator.RANGE
 				&& egg.getEggX() > EggsGenerator.LEFT_END_X - EggsGenerator.RANGE
 				&& egg.getEggX() < EggsGenerator.LEFT_END_X && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;
 		}
-		if (handsPossition.getHandPossition() == 3 && egg.getEggY() < EggsGenerator.DOWN_END_Y + EggsGenerator.RANGE
-				&& egg.getEggY() > EggsGenerator.DOWN_END_Y && egg.getEggX() > EggsGenerator.RIGHT_END_X
+		if (handsPossition.getHandPossition() == 3 && egg.getEggY() > EggsGenerator.DOWN_END_Y - EggsGenerator.RANGE
+				&& egg.getEggY() < EggsGenerator.DOWN_END_Y + EggsGenerator.RANGE && egg.getEggX() > EggsGenerator.RIGHT_END_X
 				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;
 		}
-		if (handsPossition.getHandPossition() == 4 && egg.getEggY() < EggsGenerator.UP_END_Y + EggsGenerator.RANGE
-				&& egg.getEggY() > EggsGenerator.UP_END_Y && egg.getEggX() > EggsGenerator.RIGHT_END_X
+		if (handsPossition.getHandPossition() == 4 && egg.getEggY() > EggsGenerator.UP_END_Y - EggsGenerator.RANGE
+				&& egg.getEggY() < EggsGenerator.UP_END_Y + EggsGenerator.RANGE && egg.getEggX() > EggsGenerator.RIGHT_END_X
 				&& egg.getEggX() < EggsGenerator.RIGHT_END_X + EggsGenerator.RANGE && egg.getIsEgg()) {
 			scoreUpdate();
 			return true;

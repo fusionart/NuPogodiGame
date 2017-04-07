@@ -88,7 +88,6 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		font.setColor(Color.BLACK);
 		font.draw(batch, "Score: "+String.valueOf(score.getScore()), 450, 420);
 		font.draw(batch, "Lives: "+String.valueOf(lives.getLives()), 150,420);
-		System.out.println(score.getScore());
 		batch.end();
 		createEggs();
 		
