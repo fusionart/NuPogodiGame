@@ -1,13 +1,22 @@
 package Screens;
 
+import java.lang.management.PlatformLoggingMXBean;
+
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -18,7 +27,7 @@ import com.nupogodi.game.GameStartScreen;
 
 import InputProcessor.UserInput;
 
-public class MainMenu implements Screen {
+public class MainMenu extends InputAdapter implements Screen, ApplicationListener {
 	private static final int Screen_CenterX = GameStartScreen.Screen_WIDTH / 3;
 	private static final int Screen_CenterY = GameStartScreen.Screen_HEIGH / 2;
 
@@ -30,6 +39,8 @@ public class MainMenu implements Screen {
 	private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
 	private BitmapFont white;
 	private Label heading;
+	Vector3 touchPoint = new Vector3();
+	private Camera camera;
 
 	SpriteBatch sprite;
 	private Texture background;
@@ -38,11 +49,12 @@ public class MainMenu implements Screen {
 	private Texture btnSettingsTexture;
 	private Texture btnHelpTexture;
 	private Texture texture, btnHighestScoreTexture;
+	private Sprite playBTNSprite;
 	UserInput inputprocessor;
 
 	// Gdx.input.setInputProcessor(inputProcessor);
-	public MainMenu(final GameStartScreen nuPagadi) {
-		this.game = nuPagadi;
+	public MainMenu(final GameStartScreen nuPogodi) {
+		this.game = nuPogodi;
 		inputprocessor = new UserInput();
 
 		stage = new Stage();
@@ -51,28 +63,31 @@ public class MainMenu implements Screen {
 		btnHelpTexture = new Texture(Gdx.files.internal("MainMenu/BtnHelp.png"));
 		btnSettingsTexture = new Texture(Gdx.files.internal("MainMenu/BtnSettings.png"));
 		btnHighestScoreTexture = new Texture("MainMenu/BtnScore.png");
+		playBTNSprite = new Sprite(btnPlayGameTexture);
 	}
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(inputprocessor);
+		Gdx.input.setInputProcessor(this);
 
 	}
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.begin();
 		game.batch.draw(background, 1, 1);
 
-		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
+		game.batch.draw(playBTNSprite, Screen_CenterX, 300);
 
-		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
+		// game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5,
+		// 250);
 
-		game.batch.draw(btnSettingsTexture, Screen_CenterX + Screen_CenterX / 5, 200);
+		// game.batch.draw(btnSettingsTexture, Screen_CenterX + Screen_CenterX /
+		// 5, 200);
 
-		game.batch.draw(btnHighestScoreTexture, Screen_CenterX + Screen_CenterX / 5, 150);
+		// game.batch.draw(btnHighestScoreTexture, Screen_CenterX +
+		// Screen_CenterX / 5, 150);
 
 		game.batch.end();
 
@@ -99,8 +114,77 @@ public class MainMenu implements Screen {
 	}
 
 	@Override
-	public void dispose() {
+	public boolean keyDown(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		// camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(),
+		// 0));
+//		System.out.println("coord" + screenX + " : " + screenY);
+//		System.out.println("x" + Screen_CenterX + " / " + (Screen_CenterX + playBTNSprite.getWidth()));
+//		System.out.println("y " + (GameStartScreen.Screen_HEIGH - 300) + " / "
+//				+ (GameStartScreen.Screen_HEIGH - 300 - playBTNSprite.getHeight()));
+		if ((screenX > Screen_CenterX && screenX < (Screen_CenterX + playBTNSprite.getWidth()))
+				&& (screenY < GameStartScreen.Screen_HEIGH - 300)
+				&& screenY > (GameStartScreen.Screen_HEIGH - 300 - playBTNSprite.getHeight())) {
+			System.out.println("playBTNSprite clicked");
+			game.setScreen(new GameScreen(game));
+		}
+		return true;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
 
 	}
 
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void dispose() {
+		stage.dispose();
+	}
 }

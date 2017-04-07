@@ -33,13 +33,6 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 	private Lives lives = new Lives();
 	
 	
-//	public GameScreen(final NuPagadiStartScreen nuPagadi) {
-//		this.game = nuPagadi;
-//		gameStage = new Stage();
-//		
-//	}
-
-
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
@@ -61,6 +54,15 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		addListenerToStage();
 	}
 
+
+	public GameScreen(Game aGame) {
+		create();
+
+	}
+	public GameScreen() {
+
+	}
+
 	private void addListenerToStage() {
 		Gdx.input.setInputProcessor(gameStage);
 		gameStage.addListener(new InputListener() {
@@ -75,6 +77,7 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 	@Override
 	public void render() {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		gameStage.act();
 		gameStage.draw();
 		batch.begin();
 		if (lives.getLives() > 0) {
