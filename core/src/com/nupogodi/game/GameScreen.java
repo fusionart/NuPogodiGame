@@ -85,6 +85,12 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		if(lives.getLives() == 0) {
 	//		game.setScreen(new GameOver(game));
 		}
+<<<<<<< HEAD
+=======
+		font.setColor(Color.BLACK);
+		font.draw(batch, "Score: "+String.valueOf(score.getScore()), 450, 420);
+		font.draw(batch, "Lives: "+String.valueOf(lives.getLives()), 150,420);
+>>>>>>> 328e87bae34345db83f9464af9044e2e4341b872
 		batch.end();
 		createEggs();
 		

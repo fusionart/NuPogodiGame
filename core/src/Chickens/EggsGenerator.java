@@ -17,7 +17,7 @@ import LivesAndScore.Score;
 public class EggsGenerator {
 
 	GameScreen gameScreen = new GameScreen();
-	public static final float MINIMUM_TIME_BETWEEN_EGGS = .9f;
+	public static final float MINIMUM_TIME_BETWEEN_EGGS = 1f;
 	public static final float LEFT_START_X = 31;
 	public static final float LEFT_END_X = 120;
 	public static final float RIGHT_START_X = 570;
@@ -28,7 +28,7 @@ public class EggsGenerator {
 	public static final float UP_END_Y = 270;
 	public static final float RANGE = 8;
 	public static final float DOWN_LIMIT = 20;
-	public static float speed = 0.5f;
+	public static float speed = 0.4f;
 	private float elapsed = 0.01f;
 	private Texture eggTexture;
 	private TextureRegion eggTextReg;
@@ -74,7 +74,7 @@ public class EggsGenerator {
 
 	private void createEggs(float startX, float endX, float startY, float endY, TextureRegion eggTexture) {
 		if (canCreateEgg()) {
-			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true);
+			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true, true);
 			newEgg.setEggX(startX);
 			newEgg.setEggY(startY);
 			newEgg.setOrigin(newEgg.getWidth() / 2, newEgg.getHeight() / 2);
@@ -122,7 +122,10 @@ public class EggsGenerator {
 		} else {
 			if ((egg.getEggX() > LEFT_END_X - RANGE && egg.getEggX() < LEFT_END_X)
 					|| (egg.getEggX() < RIGHT_END_X + RANGE && egg.getEggX() > RIGHT_END_X)) {
-				egg.setIsEgg(false);
+				if (((egg.getEggY() > UP_END_Y - RANGE && egg.getEggY() < UP_END_Y + RANGE)
+						|| (egg.getEggY() > DOWN_END_Y - RANGE && egg.getEggY() < DOWN_END_Y + RANGE))) {
+					egg.setIsEgg(false);
+				}
 			}
 		}
 
@@ -142,6 +145,10 @@ public class EggsGenerator {
 			}
 		} else {
 			egg.setEggY(egg.getEggY() - DOWN_LIMIT * speed * elapsed * 5);
+			if (((egg.getEggY() < UP_END_Y - RANGE && egg.getStartY() == UP_START_Y)
+					|| (egg.getEggY() < DOWN_END_Y - RANGE && egg.getStartY() < DOWN_START_Y))) {
+				egg.setIsCatchable(false);
+			}
 		}
 	}
 
