@@ -1,18 +1,19 @@
 package LivesAndScore;
 
-import java.time.Duration;
-
 import Chickens.Egg;
 import Chickens.EggsGenerator;
 import Hands.CreateHands;
 
 public class Score {
-	CreateHands handsPossition = new CreateHands();
-    public int score;
+	private CreateHands handsPossition = new CreateHands();
+    private static int score;
 	
 
 	public Score(int score) {
 		setScore(score);
+	}
+	public Score (){
+		
 	}
 
 	public int getScore() {
@@ -26,16 +27,33 @@ public class Score {
 	public void scoreUpdate() {
 		score += 1;
 		setScore(score);
-		System.out.println(score);
+		levelUp(score);
 	}
 	
-//	public void levelUp() {
-//		if(score>20) {
-//		EggsGenerator.MINIMUM_TIME_BETWEEN_EGGS--;
-//		EggsGenerator.RANGE++;
-//		System.out.println("Level up!");
-//		}
-//	}
+	public void levelUp(int score) {
+		switch (score) {
+		case 10:
+			EggsGenerator.increaseSpeed(0.05f);
+			break;
+		case 20:
+			EggsGenerator.increaseSpeed(0.05f);
+			break;
+		case 30:
+			EggsGenerator.increaseSpeed(0.05f);
+			break;
+		case 40:
+			EggsGenerator.increaseSpeed(0.05f);
+			break;
+		case 50:
+			EggsGenerator.increaseSpeed(0.05f);
+			break;
+
+		default:
+			EggsGenerator.increaseSpeed(0);
+			break;
+		}
+
+	}
 
 	public boolean addScore(Egg egg) {
 		if (handsPossition.getHandPossition() == 1 && egg.getEggY() < EggsGenerator.DOWN_END_Y + EggsGenerator.RANGE

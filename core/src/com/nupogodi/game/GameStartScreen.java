@@ -17,7 +17,7 @@ import Screens.SettingsScreen;
 import Screens.Splash;
 
 public class GameStartScreen extends Game {
-	public static Stage $gameStage;
+	public static Stage gameStage;
 	public SpriteBatch batch;
 	public Viewport screenPort;
 	private Game game;
@@ -34,15 +34,9 @@ public class GameStartScreen extends Game {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		//setScreen(new GameScreen());
-		// setScreen(new Splash());
+	
 		setScreen(new MainMenu(this));
-	//	gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
-		// setScreen(new HelpScreen(this));
-	//	 setScreen(new SettingsScreen(this));
-	//	 setScreen(new ScoreScreen(this));
-		// setScreen(new GameOver(this));
-		// setScreen(new OptionScreen(this));
+
 
 	}
 
@@ -51,15 +45,10 @@ public class GameStartScreen extends Game {
 		setScreen(menu);
 	}
 
-//	public void gotoGameScreen() {
-//		GameScreen gameScreen = new GameScreen(this);
-//		setScreen(gameScreen);
-//	}
-//
-//	public void gotoSettingsScreen() {
-//		SettingsScreen settingsScreen = new SettingsScreen(this);
-//		setScreen(settingsScreen);
-//	}
+	public void gotoGameScreen() {
+		GameScreen gameScreen = new GameScreen();
+		setScreen(gameScreen);
+	}
 
 	@Override
 	public void resize(int width, int height) {
