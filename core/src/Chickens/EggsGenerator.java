@@ -26,9 +26,9 @@ public class EggsGenerator {
 	public static final float DOWN_END_Y = 130;
 	public static final float UP_START_Y = 315;
 	public static final float UP_END_Y = 270;
-	public static final float RANGE = 10;
+	public static final float RANGE = 8;
 	public static final float DOWN_LIMIT = 20;
-	public static float speed = 0.5f;
+	public static float speed = 0.4f;
 	private float elapsed = 0.01f;
 	private Texture eggTexture;
 	private TextureRegion eggTextReg;
@@ -74,7 +74,7 @@ public class EggsGenerator {
 
 	private void createEggs(float startX, float endX, float startY, float endY, TextureRegion eggTexture) {
 		if (canCreateEgg()) {
-			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true);
+			newEgg = new Egg(startX, endX, startY, endY, eggTexture, true, true);
 			newEgg.setEggX(startX);
 			newEgg.setEggY(startY);
 			newEgg.setOrigin(newEgg.getWidth() / 2, newEgg.getHeight() / 2);
@@ -145,6 +145,10 @@ public class EggsGenerator {
 			}
 		} else {
 			egg.setEggY(egg.getEggY() - DOWN_LIMIT * speed * elapsed * 5);
+			if (((egg.getEggY() < UP_END_Y - RANGE && egg.getStartY() == UP_START_Y)
+					|| (egg.getEggY() < DOWN_END_Y - RANGE && egg.getStartY() < DOWN_START_Y))) {
+				egg.setIsCatchable(false);
+			}
 		}
 	}
 

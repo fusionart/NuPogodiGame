@@ -16,22 +16,15 @@ public class Egg extends Actor {
 	private Texture eggTexture;
 	private TextureRegion eggTextReg;
 	private boolean isEgg;
+	private boolean isCatchable;
 
-	public Egg(float startX, float endX, float startY, float endY, Texture eggTexture, boolean isEgg) {
+	public Egg(float startX, float endX, float startY, float endY, TextureRegion eggTextReg, boolean isEgg, boolean isCatchable) {
 		setStartX(startX);
 		setEndX(endX);
 		setStartY(startY);
 		setEndY(endY);
 		setIsEgg(isEgg);
-		this.eggTexture = eggTexture;
-	}
-
-	public Egg(float startX, float endX, float startY, float endY, TextureRegion eggTextReg, boolean isEgg) {
-		setStartX(startX);
-		setEndX(endX);
-		setStartY(startY);
-		setEndY(endY);
-		setIsEgg(isEgg);
+		setIsCatchable(isCatchable);
 		this.eggTextReg = eggTextReg;
 	}
 
@@ -110,6 +103,14 @@ public class Egg extends Actor {
 
 	public void setIsEgg(boolean isEgg) {
 		this.isEgg = isEgg;
+	}
+
+	public boolean getIsCatchable() {
+		return isCatchable;
+	}
+
+	public void setIsCatchable(boolean isCatchable) {
+		this.isCatchable = isCatchable;
 	}
 
 }
