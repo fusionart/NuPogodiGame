@@ -1,6 +1,7 @@
 package Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.nupogodi.game.GameScreen;
 import com.nupogodi.game.GameStartScreen;
+
+import InputProcessor.UserInput;
 
 public class MainMenu implements Screen {
 	private static final int Screen_CenterX = GameStartScreen.Screen_WIDTH / 3;
@@ -35,9 +38,13 @@ public class MainMenu implements Screen {
 	private Texture btnSettingsTexture;
 	private Texture btnHelpTexture;
 	private Texture texture, btnHighestScoreTexture;
+	UserInput inputprocessor;
 
+	// Gdx.input.setInputProcessor(inputProcessor);
 	public MainMenu(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;
+		inputprocessor = new UserInput();
+
 		stage = new Stage();
 		background = new Texture(Gdx.files.internal("BackgroundScreen.png"));
 		btnPlayGameTexture = new Texture(Gdx.files.internal("MainMenu/BtnPlay.png"));
@@ -48,8 +55,7 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void show() {
-		// white = new BitmapFont(Gdx.files.internal("src/fonts/white.fnt"),
-		// false);
+		Gdx.input.setInputProcessor(inputprocessor);
 
 	}
 
@@ -61,9 +67,6 @@ public class MainMenu implements Screen {
 		game.batch.draw(background, 1, 1);
 
 		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
-		if (Gdx.input.isTouched()) {
-			game.setScreen(new GameScreen());
-		}
 
 		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
 
@@ -77,31 +80,26 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		
 
 	}
 
 	@Override
 	public void pause() {
-		
 
 	}
 
 	@Override
 	public void resume() {
-		
 
 	}
 
 	@Override
 	public void hide() {
-		
 
 	}
 
 	@Override
 	public void dispose() {
-		
 
 	}
 

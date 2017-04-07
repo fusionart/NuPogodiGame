@@ -3,6 +3,7 @@ package InputProcessor;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Screen;
 
 public class UserInput extends InputAdapter implements ApplicationListener {
 
