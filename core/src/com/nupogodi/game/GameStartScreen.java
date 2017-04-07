@@ -36,12 +36,12 @@ public class GameStartScreen extends Game {
 		batch = new SpriteBatch();
 		//setScreen(new GameScreen());
 		// setScreen(new Splash());
-		//setScreen(new MainMenu(this));
+		setScreen(new MainMenu(this));
 	//	gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 		// setScreen(new HelpScreen(this));
 	//	 setScreen(new SettingsScreen(this));
 	//	 setScreen(new ScoreScreen(this));
-		 setScreen(new GameOver(this));
+		// setScreen(new GameOver(this));
 		// setScreen(new OptionScreen(this));
 
 	}

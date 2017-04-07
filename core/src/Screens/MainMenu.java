@@ -1,12 +1,15 @@
 package Screens;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,7 +23,7 @@ import com.nupogodi.game.GameStartScreen;
 
 import InputProcessor.UserInput;
 
-public class MainMenu implements Screen {
+public class MainMenu extends ApplicationAdapter implements Screen {
 	private static final int Screen_CenterX = GameStartScreen.Screen_WIDTH / 3;
 	private static final int Screen_CenterY = GameStartScreen.Screen_HEIGH / 2;
 
@@ -42,12 +45,14 @@ public class MainMenu implements Screen {
 	private Texture btnHelpTexture;
 	private Texture texture, btnHighestScoreTexture;
 	UserInput inputprocessor;
-
+	Sprite img;
+	float w,h,tw,th =0;
+	SpriteBatch batch;
 
 	public MainMenu(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;
 		inputprocessor = new UserInput();
-
+		//img = new Sprite(new Texture(Gdx.files.internal("newEgg.png")));
 		stage = new Stage();
 		background = new Texture(Gdx.files.internal("BackgroundScreen.png"));
 		btnPlayGameTexture = new Texture(Gdx.files.internal("MainMenu/BtnPlay.png"));
@@ -62,6 +67,31 @@ public class MainMenu implements Screen {
 		Gdx.input.setInputProcessor(inputprocessor);
 
 	}
+	
+	  @Override
+	    public void create () {
+	        w = Gdx.graphics.getWidth();
+	        h = Gdx.graphics.getHeight();
+	        batch = new SpriteBatch();
+	        img = new Sprite(new Texture(Gdx.files.internal("iceCream.png")));
+
+	        tw = img.getWidth();
+	        th = img.getHeight();
+	        img.setBounds(30, 50, h, w);
+	        Gdx.input.setInputProcessor(new InputAdapter(){
+
+	            @Override
+	            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+
+	                if(img.getBoundingRectangle().contains(screenX, screenY))
+	                       System.out.println("Image Clicked");
+
+	                return true;
+	            }
+
+	        });
+	    }
+	
 
 	@Override
 	public void render(float delta) {
@@ -71,6 +101,7 @@ public class MainMenu implements Screen {
 		game.batch.draw(background, 1, 1);
 
 		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
+		
 		 
 		 if(Gdx.input.justTouched())
 		   {

@@ -6,12 +6,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.nupogodi.game.GameScreen;
 
 import LivesAndScore.Score;
 
-public class Hud {
+public class Hud implements Disposable {
 GameScreen stage;
 private Integer scoreInGame;
 private Integer livesInGame;
@@ -42,5 +43,11 @@ public Hud(SpriteBatch sb, GameScreen gameStage) {
           stage.addActorOnStage(table);
 
 
+}
+
+@Override
+public void dispose() {
+	// TODO Auto-generated method stub
+	
 }
 }
