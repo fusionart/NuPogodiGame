@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -35,12 +36,13 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 	private Stage stage;
 	private TextureAtlas atlas;
 	private Skin skin; // the appearance of everything
-	private Table table; // For easier positioning of the objects
+	//private Table table; // For easier positioning of the objects
 	private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
 	private BitmapFont white;
 	private Label heading;
 	Vector3 touchPoint = new Vector3();
 	private Camera camera;
+
 
 	SpriteBatch sprite;
 	private Texture background;
@@ -52,9 +54,15 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 	private Sprite playBTNSprite;
 	UserInput inputprocessor;
 
+<<<<<<< HEAD
 	// Gdx.input.setInputProcessor(inputProcessor);
 	public MainMenu(final GameStartScreen nuPogodi) {
 		this.game = nuPogodi;
+=======
+
+	public MainMenu(final GameStartScreen nuPagadi) {
+		this.game = nuPagadi;
+>>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
 		inputprocessor = new UserInput();
 
 		stage = new Stage();
@@ -63,7 +71,11 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 		btnHelpTexture = new Texture(Gdx.files.internal("MainMenu/BtnHelp.png"));
 		btnSettingsTexture = new Texture(Gdx.files.internal("MainMenu/BtnSettings.png"));
 		btnHighestScoreTexture = new Texture("MainMenu/BtnScore.png");
+<<<<<<< HEAD
 		playBTNSprite = new Sprite(btnPlayGameTexture);
+=======
+		//btnPlayGame.getTouchable();
+>>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
 	}
 
 	@Override
@@ -78,10 +90,27 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 		game.batch.begin();
 		game.batch.draw(background, 1, 1);
 
+<<<<<<< HEAD
 		game.batch.draw(playBTNSprite, Screen_CenterX, 300);
 
 		// game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5,
 		// 250);
+=======
+		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
+		 
+		 if(Gdx.input.justTouched())
+		   {
+//			   
+				//touchPointX.set(Gdx.input.getX());
+				//touchPointY.set(Gdx.input.getY());
+			   // if( btnPlayGameTexture).getBoundingRectangles().contains(touchPointX,touchPointY))
+			     
+			   game.setScreen(new GameScreen());
+			     }
+			   
+			
+		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
+>>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
 
 		// game.batch.draw(btnSettingsTexture, Screen_CenterX + Screen_CenterX /
 		// 5, 200);
@@ -110,10 +139,22 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 
 	@Override
 	public void hide() {
-
+		Gdx.input.setInputProcessor(null);
 	}
-
+   public void update() {
+//	   if(Gdx.input.justTouched())
+//	   {
+//	   
+//		touchPointX.set(Gdx.input.getX());
+//		touchPointY.set(Gdx.input.getY());
+//	    if( btnPlayGameTexture).getBoundingRectangles().contains(touchPointX,touchPointY))
+//	     {
+//	   game.
+//	     }
+//	   }
+   }
 	@Override
+<<<<<<< HEAD
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
 		return false;
@@ -176,6 +217,10 @@ public class MainMenu extends InputAdapter implements Screen, ApplicationListene
 	public void create() {
 		// TODO Auto-generated method stub
 
+=======
+	public void dispose() {
+		stage.dispose();
+>>>>>>> 4d4668181b612085ac441efe0d14bf9dd50c9d1b
 	}
 
 	@Override

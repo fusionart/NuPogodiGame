@@ -15,12 +15,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.nupogodi.game.GameScreen;
 import com.nupogodi.game.GameStartScreen;
 
+import InputProcessor.UserInput;
+
 public class ScoreScreen implements Screen {
 	private static final int Screen_CenterX = GameStartScreen.Screen_WIDTH / 3;
 	private static final int Screen_CenterY = GameStartScreen.Screen_HEIGH / 2;
 
 	final GameStartScreen game;
 	Texture background, msgBox, backArrow, Score, bestScore, currentScore;
+	UserInput inputprocessor;
 
 	public ScoreScreen(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;

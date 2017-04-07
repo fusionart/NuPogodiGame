@@ -2,16 +2,23 @@ package InputProcessor;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 public class UserInput extends InputAdapter implements ApplicationListener {
+	private static int touchPointX, touchPointY;
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		System.out.println("click:" + screenX + "," + screenY);
+		System.out.println(touchPointX + " " + touchPointY);
+	
 		return true;
 	}
+     
+	
 
 	@Override
 	public void create() {
