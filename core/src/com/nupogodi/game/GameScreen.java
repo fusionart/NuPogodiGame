@@ -18,6 +18,7 @@ import Chickens.Chickens;
 import Chickens.EggsGenerator;
 import LivesAndScore.Lives;
 import LivesAndScore.Score;
+import Screens.GameOver;
 import Screens.MainMenu;
 import WolfBody.WolfMovement;
 
@@ -31,7 +32,7 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 	private Texture eggTexture, scoreLabel;
 	private WolfMovement wolfMovement;
 	private Lives lives = new Lives();
-	
+	boolean gameOver = false;
 	
 //	public GameScreen(final NuPagadiStartScreen nuPagadi) {
 //		this.game = nuPagadi;
@@ -81,7 +82,9 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 			//eggsGenerator.drawEveryEgg(batch);
 			eggsGenerator.update(batch);
 		}
-		
+		if(lives.getLives() == 0) {
+	//		game.setScreen(new GameOver(game));
+		}
 		batch.end();
 		createEggs();
 		
@@ -95,6 +98,9 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 	private void createEggs() {
 		if (lives.getLives() > 0) {
 			eggsGenerator.addEggs();
+		}
+		else if(lives.getLives()==0) {
+			gameOver=true;
 		}
 	}
 

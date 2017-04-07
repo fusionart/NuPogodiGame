@@ -28,11 +28,11 @@ public class MainMenu implements Screen {
 	private Stage stage;
 	private TextureAtlas atlas;
 	private Skin skin; // the appearance of everything
-	private Table table; // For easier positioning of the objects
+	//private Table table; // For easier positioning of the objects
 	private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
 	private BitmapFont white;
 	private Label heading;
-	private static int touchPointX, touchPointY;
+
 
 	SpriteBatch sprite;
 	private Texture background;
@@ -71,16 +71,18 @@ public class MainMenu implements Screen {
 		game.batch.draw(background, 1, 1);
 
 		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
+		 
 		 if(Gdx.input.justTouched())
-			   {
-     			touchPointX = Gdx.input.getX();
-				touchPointY = Gdx.input.getY();
-	//		    if( (btnPlayGameTexture.getBoundingRectangles().contains(touchPointX,touchPointY))
-			     {
-			    
+		   {
+//			   
+				//touchPointX.set(Gdx.input.getX());
+				//touchPointY.set(Gdx.input.getY());
+			   // if( btnPlayGameTexture).getBoundingRectangles().contains(touchPointX,touchPointY))
+			     
+			   game.setScreen(new GameScreen());
 			     }
-			   }
-
+			   
+			
 		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
 
 		game.batch.draw(btnSettingsTexture, Screen_CenterX + Screen_CenterX / 5, 200);
@@ -118,7 +120,7 @@ public class MainMenu implements Screen {
 //		touchPointY.set(Gdx.input.getY());
 //	    if( btnPlayGameTexture).getBoundingRectangles().contains(touchPointX,touchPointY))
 //	     {
-//	     GameStartScreen.goTo
+//	   game.
 //	     }
 //	   }
    }

@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.scenario.Settings;
 
 import Screens.GameOver;
 import Screens.HelpScreen;
 import Screens.MainMenu;
 import Screens.ScoreScreen;
+import Screens.SettingsScreen;
 import Screens.Splash;
 
 public class GameStartScreen extends Game {
@@ -37,9 +39,9 @@ public class GameStartScreen extends Game {
 		//setScreen(new MainMenu(this));
 	//	gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 		// setScreen(new HelpScreen(this));
-		// setScreen(new SettingsScreen(this));
+	//	 setScreen(new SettingsScreen(this));
 	//	 setScreen(new ScoreScreen(this));
-		// setScreen(new GameOver(this));
+		 setScreen(new GameOver(this));
 		// setScreen(new OptionScreen(this));
 
 	}
