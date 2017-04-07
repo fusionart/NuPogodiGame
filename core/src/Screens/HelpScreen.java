@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.nupogodi.game.GameScreen;
 import com.nupogodi.game.GameStartScreen;
 
+import InputProcessor.UserInput;
+
 public class HelpScreen implements Screen {
 	private static final int Screen_CenterX = GameStartScreen.Screen_WIDTH / 3;
 	private static final int Screen_CenterY = GameStartScreen.Screen_HEIGH / 2;
@@ -24,19 +26,21 @@ public class HelpScreen implements Screen {
 	SpriteBatch sprite;
 	private Texture background;
 	private Texture helpLabel, backArrow;
+	UserInput inputprocessor;
 
 	public HelpScreen(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;
 		background = new Texture(Gdx.files.internal("HelpScreen/BackgroundScreen.png"));
 		helpLabel = new Texture(Gdx.files.internal("HelpScreen/HelpScreen5.png"));
 		backArrow = new Texture("HelpScreen/backArrow3.png");
+		
 
 	}
 
 	@Override
 	public void show() {
-		// white = new BitmapFont(Gdx.files.internal("src/fonts/white.fnt"),
-		// false);
+		Gdx.input.setInputProcessor(inputprocessor);
+
 
 	}
 
@@ -81,6 +85,7 @@ public class HelpScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		Gdx.input.setInputProcessor(null);
 
 	}
 

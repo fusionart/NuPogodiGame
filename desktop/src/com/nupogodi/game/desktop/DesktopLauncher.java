@@ -3,9 +3,11 @@ package com.nupogodi.game.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.nupogodi.game.GameScreen;
+
 import com.nupogodi.game.GameStartScreen;
 
 import InputProcessor.UserInput;
+import Screens.MainMenu;
 
 public class DesktopLauncher {
 	private static final int SCREEN_WIDTH = 600;

@@ -3,12 +3,14 @@ package Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -30,6 +32,7 @@ public class MainMenu implements Screen {
 	private TextButton btnPlayGame, btnSettings, btnHelp, btnHighestScore;
 	private BitmapFont white;
 	private Label heading;
+	private static int touchPointX, touchPointY;
 
 	SpriteBatch sprite;
 	private Texture background;
@@ -40,7 +43,7 @@ public class MainMenu implements Screen {
 	private Texture texture, btnHighestScoreTexture;
 	UserInput inputprocessor;
 
-	// Gdx.input.setInputProcessor(inputProcessor);
+
 	public MainMenu(final GameStartScreen nuPagadi) {
 		this.game = nuPagadi;
 		inputprocessor = new UserInput();
@@ -51,6 +54,7 @@ public class MainMenu implements Screen {
 		btnHelpTexture = new Texture(Gdx.files.internal("MainMenu/BtnHelp.png"));
 		btnSettingsTexture = new Texture(Gdx.files.internal("MainMenu/BtnSettings.png"));
 		btnHighestScoreTexture = new Texture("MainMenu/BtnScore.png");
+		//btnPlayGame.getTouchable();
 	}
 
 	@Override
@@ -67,6 +71,15 @@ public class MainMenu implements Screen {
 		game.batch.draw(background, 1, 1);
 
 		game.batch.draw(btnPlayGameTexture, Screen_CenterX, 300);
+		 if(Gdx.input.justTouched())
+			   {
+     			touchPointX = Gdx.input.getX();
+				touchPointY = Gdx.input.getY();
+	//		    if( (btnPlayGameTexture.getBoundingRectangles().contains(touchPointX,touchPointY))
+			     {
+			    
+			     }
+			   }
 
 		game.batch.draw(btnHelpTexture, Screen_CenterX + Screen_CenterX / 5, 250);
 
@@ -95,12 +108,23 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void hide() {
-
+		Gdx.input.setInputProcessor(null);
 	}
-
+   public void update() {
+//	   if(Gdx.input.justTouched())
+//	   {
+//	   
+//		touchPointX.set(Gdx.input.getX());
+//		touchPointY.set(Gdx.input.getY());
+//	    if( btnPlayGameTexture).getBoundingRectangles().contains(touchPointX,touchPointY))
+//	     {
+//	     GameStartScreen.goTo
+//	     }
+//	   }
+   }
 	@Override
 	public void dispose() {
-
+		stage.dispose();
 	}
 
 }

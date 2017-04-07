@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import InputProcessor.UserInput;
 import Screens.GameOver;
 import Screens.HelpScreen;
 import Screens.MainMenu;
@@ -35,7 +34,7 @@ public class GameStartScreen extends Game {
 		batch = new SpriteBatch();
 		//setScreen(new GameScreen());
 		// setScreen(new Splash());
-		setScreen(new MainMenu(this));
+		//setScreen(new MainMenu(this));
 	//	gameSkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 		// setScreen(new HelpScreen(this));
 		// setScreen(new SettingsScreen(this));
