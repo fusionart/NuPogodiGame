@@ -4,8 +4,10 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -31,8 +33,10 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 	private TextureRegion eggTextReg;
 	private Texture eggTexture, scoreLabel;
 	private WolfMovement wolfMovement;
-	private Lives lives = new Lives();
+	private Lives lives;
+	private Score score;
 	boolean gameOver = false;
+	private BitmapFont font;
 	
 //	public GameScreen(final NuPagadiStartScreen nuPagadi) {
 //		this.game = nuPagadi;
@@ -51,8 +55,9 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		gameStage = new Stage(new ScreenViewport());
 		background = new Background();
 		gameStage.addActor(background);
-		
-
+		font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
+		lives = new Lives();
+		score = new Score();
 		Chickens chickens = new Chickens();
 		gameStage.addActor(chickens);
 
@@ -85,12 +90,9 @@ public class GameScreen extends ApplicationAdapter implements Screen {
 		if(lives.getLives() == 0) {
 	//		game.setScreen(new GameOver(game));
 		}
-<<<<<<< HEAD
-=======
 		font.setColor(Color.BLACK);
 		font.draw(batch, "Score: "+String.valueOf(score.getScore()), 450, 420);
 		font.draw(batch, "Lives: "+String.valueOf(lives.getLives()), 150,420);
->>>>>>> 328e87bae34345db83f9464af9044e2e4341b872
 		batch.end();
 		createEggs();
 		
